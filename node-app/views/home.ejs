@@ -20,8 +20,10 @@
         <% accountsTable.forEach(element =>{ %>
             <tr>
                 <td><%= element.bank_name %></td>
-                <td><%= element.account_type %></td>
-                <td>balance</td>
+                <td><form action="/summary" method="post">
+                        <button type="submit" class="accountTypeLink" name="selectedAccount" value="<%= element.bank_id %>"><%= element.account_type %></button>
+                    </form></td>
+                <td><%= element.balance %></td>
             </tr>
         <% }) %>
         </tbody>
@@ -46,34 +48,33 @@
 <div id="addAccount" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form class="" action="/account" method="post">
-                <div class="modal-header">
-                    <h4 class="modal-title">Add Account</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label>Bank: </label>
-                        <label>1 - RBC </label>
-                        <label>2 - Scotia Bank </label>
-                        <label>3 - Itau </label>
-                        <input id="bank_id" type="text" class="form-control" required name="bank_id"
-                               value=""><br><br>
+
+                <form action="/account" class="customRadio customCheckbox m-0 p-0" method="post">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add Account</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
-                    <div class="form-group">
-                        <label>Account Type: </label>
-                        <label>1 - Chequing </label>
-                        <label>2 - Saving </label>
-                        <label>3 - Credit Card </label>
-                        <input id="account_type_id" type="text" class="form-control" required name="account_type_id"
-                               value=""><br><br>
+                    <div class="row mb-0">
+                        <div class="row justify-content-start">
+                            <div class="form-group"><label>Choose your BANK: </label>
+                                <div class="row"> <input type="radio" name="bank" value="1" checked> <label>RBC</label> </div>
+                                <div class="row"> <input type="radio" name="bank" value="2"> <label>Scotia Bank</label> </div>
+                                <div class="row"> <input type="radio" name="bank" value="3"> <label>Itau</label> </div>
+                            </div>
+                        </div>
+                            <div class="row justify-content-start">
+                            <div class="form-group"><label>Choose your ACCOUNT TYPE : </label>
+                                <div class="row"> <input type="radio" name="account_type" value="1" checked> <label>Chequing</label> </div>
+                                <div class="row"> <input type="radio" name="account_type" value="2"> <label>Saving</label> </div>
+                                <div class="row"> <input type="radio" name="account_type" value="3"> <label>Credit Card</label> </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                    <input type="submit" class="btn btn-success" name="insert" value="Add">
-                </div>
-            </form>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" class="btn btn-success" name="insert" value="Add">
+                    </div>
+                </form>
         </div>
     </div>
 </div>

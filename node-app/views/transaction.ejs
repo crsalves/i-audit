@@ -2,6 +2,31 @@
 <div class="table-wrapper">
     <div class="table-title">
         <div class="row">
+
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <td>BANK</td>
+                    <td>ACCOUNT</td>
+                    <td>BALANCE</td>
+                </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td><%= selectedAccount.bank_name %></td>
+                        <td><%= selectedAccount.account_type %></td>
+                        <td><%= selectedAccount.balance %></td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+
+
+
+
             <div class="col-sm-6">
                 <h1> %=transactionsTable[0].bank_name ></h1>
                 <h2>All your %=transactionsTable[0].account_type ><b>account</b> transactions</h2>
@@ -19,12 +44,7 @@
 				<input type="checkbox" id="selectAll">
 				<label for="selectAll"></label>
                 </span>
-                    </th>
-                    <% columnsTable.forEach(element =>{ %>
-                        <tr>
-                            <td><%= element %></td>
-                        </tr>
-                    <% }) %>
+
                     </thead>
 
                     <tbody>
@@ -36,9 +56,9 @@
                         <label for="checkbox<%= element.product_id %>"></label>
                     </span>
                             </td>
-                            <td><%= element.transaction_date %></td>
-                            <td><%= element.category_type %></td>
-                            <td><%= element.transaction_value %></td>
+                            <td>< element.transaction_date %></td>
+                            <td>< element.category_type %></td>
+                            <td>< element.transaction_value %></td>
                             <td>
                                 <a href="#editItemModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                                 <a href="#deleteItemModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>

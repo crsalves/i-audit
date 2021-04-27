@@ -14,15 +14,19 @@ module.exports = function (passport, saltRounds, bcrypt) {
     })
 
     router.get('/home', async function (req, res) {
-        if (req.isAuthenticated())
-        {
-            var accountsTable = await memberController.getAllAccountsOfOneMember(req.user.id)
+        if (req.isAuthenticated()) {
+            var accounts = await memberController.getAllAccountsOfOneMember(req.user.id)
+            var balance = 0
 
-            if (accountsTable[0] != null) {
-                res.render('home', {showLogin: false, isLoginAdmin: false, accountsTable: accountsTable})
-            } else {
-                res.render('home', {showLogin: false, isLoginAdmin: false, accountsTable: null})
-            }
+            var accountsTable = []
+            accounts.forEach(element =>
+                accountsTable.push({
+                    "bank_name": element.bank_name,
+                    "account_type": element.account_type,
+                    "balance":balance
+                }))
+
+            res.render('home', {showLogin: false, isLoginAdmin: false, accountsTable: accountsTable })
         } else {
             res.render('index', {showLogin: true, isLoginAdmin: false})
         }
@@ -80,17 +84,18 @@ module.exports = function (passport, saltRounds, bcrypt) {
                         return next(err)
                     } else {
                         if (req.isAuthenticated()) {
-                            var accountsTable = await memberController.getAllAccountsOfOneMember(req.user.id)
+                            var accounts = await memberController.getAllAccountsOfOneMember(req.user.id)
+                            var balance = 0
 
-                            if (accountsTable[0] != null) {
-                                res.render('home', {
-                                    showLogin: false,
-                                    isLoginAdmin: false,
-                                    accountsTable: accountsTable
-                                })
-                            } else {
-                                res.render('home', {showLogin: false, isLoginAdmin: false, accountsTable: null})
-                            }
+                            var accountsTable = []
+                            accounts.forEach(element =>
+                                accountsTable.push({
+                                    "bank_name": element.bank_name,
+                                    "account_type": element.account_type,
+                                    "balance":balance
+                                }))
+
+                                res.render('home', {showLogin: false, isLoginAdmin: false, accountsTable: accountsTable })
                         } else {
                             res.render('index', {showLogin: true, isLoginAdmin: false})
                         }
@@ -106,24 +111,29 @@ module.exports = function (passport, saltRounds, bcrypt) {
     })
 
     router.post('/account', async function (req, res) {
+
         if (req.isAuthenticated()) {
             var member_id = req.user.id
-            var bank_id = req.body.bank_id
-            var account_type_id = req.body.account_type_id
+            var bank_id = req.body.bank
+            var account_type_id = req.body.account_type
 
             try {
                 var newAccount = await accountController.createAccount(member_id, bank_id, account_type_id)
-                var accountsTable = await memberController.getAllAccountsOfOneMember(req.user.id)
+                var accounts = await memberController.getAllAccountsOfOneMember(req.user.id)
+                var balance = 0
 
-                if (accountsTable[0] != null) {
-                    res.render('home', {
-                        showLogin: false,
-                        isLoginAdmin: false,
-                        accountsTable: accountsTable
-                    })
-                } else {
-                    res.render('home', {showLogin: false, isLoginAdmin: false, accountsTable: null})
-                }
+                var accountsTable = []
+                accounts.forEach(element =>
+                    accountsTable.push({
+                        "bank_id": element.bank_id,
+                        "bank_name": element.bank_name,
+                        "account_type_id": element.account_type_id,
+                        "account_type": element.account_type,
+                        "balance":balance
+                    }))
+
+                res.render('home', {showLogin: false, isLoginAdmin: false, accountsTable: accountsTable })
+
             } catch (err) {
                 console.log(err)
                 res.send("not-found")
@@ -134,14 +144,28 @@ module.exports = function (passport, saltRounds, bcrypt) {
         }
     })
 
-    router.get('/transaction', function (req, res) {
+    router.post('/summary', function (req, res) {
         if (req.isAuthenticated()) {
-            var columnsTable = []
+            var selectedAccount = req.body
+            console.log(selectedAccount)
+            // console.log(req.body.account_type)
+            //
+             console.log(req.params)
+            //
+            // console.log()
+            //
+            // console.log(req.body.key)
+            // console.log(req.body.key)
+
+
+
+
+
             var transactionsTable = []
             res.render('transaction', {
                 showLogin: false,
                 isLoginAdmin: false,
-                columnsTable: columnsTable,
+                selectedAccount: selectedAccount,
                 transactionsTable: transactionsTable
             })
         } else {

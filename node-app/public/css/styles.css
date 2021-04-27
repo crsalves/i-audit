@@ -154,7 +154,7 @@ table.table td a {
     font-weight: bold;
     color: #566787;
     display: inline-block;
-    text-decoration: none;
+    text-decoration: underline;
     outline: none !important;
 }
 table.table td a:hover {
@@ -177,7 +177,11 @@ table.table .avatar {
 thead{
     font-weight: bold;
 }
-
+.accountTypeLink {
+    text-decoration: underline;
+    border: none;
+    background-color: transparent;
+}
 
 /* Edit Modal styles */
 .modal .modal-dialog {
