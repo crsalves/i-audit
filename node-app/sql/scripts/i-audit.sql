@@ -1,11 +1,12 @@
+-- DROP DATABASE `i_audit`;
 CREATE DATABASE IF NOT EXISTS `i_audit`;
 USE `i_audit`;
 
 --  Tables section
 CREATE TABLE IF NOT EXISTS `member`(
 	`member_id` INT NOT NULL AUTO_INCREMENT,
-	`email` VARCHAR(50) DEFAULT NULL,
-	`password` VARCHAR(255) DEFAULT NULL,
+	`member_email` VARCHAR(50) DEFAULT NULL,
+	`member_password` VARCHAR(255) DEFAULT NULL,
     PRIMARY KEY (`member_id`)
 );
 
@@ -38,10 +39,13 @@ CREATE TABLE IF NOT EXISTS `category_type`(
     PRIMARY KEY (`category_type_id`)
 );
 
+-- DROP TABLE `transaction`;
 CREATE TABLE IF NOT EXISTS `transaction`(
     	`transaction_id` INT NOT NULL AUTO_INCREMENT,
 	`account_id` INT,
 	`category_type_id` INT,
+    `transaction_date` DATETIME,
+    `transaction_value` FLOAT,
     PRIMARY KEY (`transaction_id`, `account_id`),
     	FOREIGN KEY (`account_id`) REFERENCES `account`(`account_id`),
 	FOREIGN KEY (`category_type_id`) REFERENCES `category_type`(`category_type_id`)

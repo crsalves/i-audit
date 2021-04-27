@@ -1,5 +1,6 @@
 const mysql = require('mysql')
 var connectDB
+
 function connectDb(configDB){
     if(!connectDB){
         connectDB = mysql.createConnection(configDB)
