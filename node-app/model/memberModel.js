@@ -24,7 +24,7 @@ class MemberModel {
 
     selectMemberAccounts(member_id){
         return new Promise(function(resolve, reject){
-            const SELECT = 'SELECT * FROM account\n' +
+            const SELECT = 'SELECT account.*, bank.bank_name, account_type.account_type FROM account\n' +
                 'INNER JOIN bank ON account.bank_id = bank.bank_id\n' +
                 'INNER JOIN account_type ON account.account_type_id = account_type.account_type_id\n' +
                 'WHERE member_id = ' + member_id + '\n' +

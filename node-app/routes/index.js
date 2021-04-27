@@ -21,7 +21,9 @@ module.exports = function (passport, saltRounds, bcrypt) {
             var accountsTable = []
             accounts.forEach(element =>
                 accountsTable.push({
+                    "bank_id": element.bank_id,
                     "bank_name": element.bank_name,
+                    "account_type_id": element.account_type_id,
                     "account_type": element.account_type,
                     "balance":balance
                 }))
@@ -90,11 +92,12 @@ module.exports = function (passport, saltRounds, bcrypt) {
                             var accountsTable = []
                             accounts.forEach(element =>
                                 accountsTable.push({
+                                    "bank_id": element.bank_id,
                                     "bank_name": element.bank_name,
+                                    "account_type_id": element.account_type_id,
                                     "account_type": element.account_type,
                                     "balance":balance
                                 }))
-
                                 res.render('home', {showLogin: false, isLoginAdmin: false, accountsTable: accountsTable })
                         } else {
                             res.render('index', {showLogin: true, isLoginAdmin: false})
@@ -146,22 +149,17 @@ module.exports = function (passport, saltRounds, bcrypt) {
 
     router.post('/summary', function (req, res) {
         if (req.isAuthenticated()) {
-            var selectedAccount = req.body
+            var selectedAccount = {
+                "bank_id": req.body.selectedAccount[0],
+                "account_type_id": req.body.selectedAccount[2]
+            }
+
             console.log(selectedAccount)
-            // console.log(req.body.account_type)
-            //
-             console.log(req.params)
-            //
-            // console.log()
-            //
-            // console.log(req.body.key)
-            // console.log(req.body.key)
-
-
-
-
+            console.log(selectedAccount.account_type_id)
 
             var transactionsTable = []
+
+
             res.render('transaction', {
                 showLogin: false,
                 isLoginAdmin: false,

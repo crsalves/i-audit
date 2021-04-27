@@ -21,7 +21,11 @@
             <tr>
                 <td><%= element.bank_name %></td>
                 <td><form action="/summary" method="post">
-                        <button type="submit" class="accountTypeLink" name="selectedAccount" value="<%= element.bank_id %>"><%= element.account_type %></button>
+                        <% var ids = [] %>
+                        <% ids [0] = element.bank_id%>
+                        <% ids [1] = element.account_type_id%>
+                        <button type="submit" class="accountTypeLink" name="selectedAccount" value="<%=ids%>" ><%= element.account_type %></button>
+
                     </form></td>
                 <td><%= element.balance %></td>
             </tr>
