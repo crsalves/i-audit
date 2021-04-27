@@ -7,21 +7,21 @@ const accountController = new AccountController()
 const TransactionController = require('../controller/transactionController')
 const transactionController = new TransactionController()
 
-module.exports = function(passport, saltRounds, bcrypt){
+module.exports = function (passport, saltRounds, bcrypt) {
 
     router.get('/', function (req, res) {
         res.render('index', {showLogin: true, isLoginAdmin: false})
     })
 
     router.get('/home', async function (req, res) {
-        if (req.isAuthenticated()) {
-            var columnsTable = await accountController.getColumnFields()
+        if (req.isAuthenticated())
+        {
             var accountsTable = await memberController.getAllAccountsOfOneMember(req.user.id)
 
-            if(accountsTable[0] != null){
-                res.render('home', {showLogin: false, isLoginAdmin: false, columnsTable: columnsTable, accountsTable: accountsTable})
-            }else{
-                res.render('home', {showLogin: false, isLoginAdmin: false, columnsTable: null, accountsTable: null})
+            if (accountsTable[0] != null) {
+                res.render('home', {showLogin: false, isLoginAdmin: false, accountsTable: accountsTable})
+            } else {
+                res.render('home', {showLogin: false, isLoginAdmin: false, accountsTable: null})
             }
         } else {
             res.render('index', {showLogin: true, isLoginAdmin: false})
@@ -30,7 +30,7 @@ module.exports = function(passport, saltRounds, bcrypt){
 
     router.post('/register', function (req, res, next) {
         bcrypt.hash(req.body.memberPasswordLogin, saltRounds, async function (err, hash) {
-            try{
+            try {
                 var member = await memberController.registerMember(req.body.usernameLogin, hash)
 
                 passport.authenticate("local", function (err, user, info) {
@@ -44,13 +44,16 @@ module.exports = function(passport, saltRounds, bcrypt){
                                 return next(err)
                             } else {
                                 if (req.isAuthenticated()) {
-                                    var columnsTable = await accountController.getColumnFields()
                                     var accountsTable = await memberController.getAllAccountsOfOneMember(req.user.id)
 
-                                    if(accountsTable[0] != null){
-                                        res.render('home', {showLogin: false, isLoginAdmin: false, columnsTable: columnsTable, accountsTable: accountsTable})
-                                    }else{
-                                        res.render('home', {showLogin: false, isLoginAdmin: false, columnsTable: null, accountsTable: null})
+                                    if (accountsTable[0] != null) {
+                                        res.render('home', {
+                                            showLogin: false,
+                                            isLoginAdmin: false,
+                                            accountsTable: accountsTable
+                                        })
+                                    } else {
+                                        res.render('home', {showLogin: false, isLoginAdmin: false, accountsTable: null})
                                     }
                                 } else {
                                     res.render('index', {showLogin: true, isLoginAdmin: false})
@@ -59,7 +62,7 @@ module.exports = function(passport, saltRounds, bcrypt){
                         })
                     }
                 })(req, res, next)
-            }catch (err){
+            } catch (err) {
                 res.send("not-found")
             }
         })
@@ -77,17 +80,21 @@ module.exports = function(passport, saltRounds, bcrypt){
                         return next(err)
                     } else {
                         if (req.isAuthenticated()) {
-                            var columnsTable = await accountController.getColumnFields()
                             var accountsTable = await memberController.getAllAccountsOfOneMember(req.user.id)
 
-                            if(accountsTable[0] != null){
-                                res.render('home', {showLogin: false, isLoginAdmin: false, columnsTable: columnsTable, accountsTable: accountsTable})
-                            }else{
-                                res.render('home', {showLogin: false, isLoginAdmin: false, columnsTable: null, accountsTable: null})
+                            if (accountsTable[0] != null) {
+                                res.render('home', {
+                                    showLogin: false,
+                                    isLoginAdmin: false,
+                                    accountsTable: accountsTable
+                                })
+                            } else {
+                                res.render('home', {showLogin: false, isLoginAdmin: false, accountsTable: null})
                             }
                         } else {
                             res.render('index', {showLogin: true, isLoginAdmin: false})
-                        }                    }
+                        }
+                    }
                 })
             }
         })(req, res, next)
@@ -98,23 +105,31 @@ module.exports = function(passport, saltRounds, bcrypt){
         res.render('index', {showLogin: true, isLoginAdmin: false})
     })
 
-    router.post('/account', async function(req, res){
-        if(req.isAuthenticated()){
+    router.post('/account', async function (req, res) {
+        if (req.isAuthenticated()) {
             var member_id = req.user.id
             var bank_id = req.body.bank_id
             var account_type_id = req.body.account_type_id
 
-            try{
+            try {
                 var newAccount = await accountController.createAccount(member_id, bank_id, account_type_id)
-                res.send(newAccount)
+                var accountsTable = await memberController.getAllAccountsOfOneMember(req.user.id)
 
-            }catch (err){
+                if (accountsTable[0] != null) {
+                    res.render('home', {
+                        showLogin: false,
+                        isLoginAdmin: false,
+                        accountsTable: accountsTable
+                    })
+                } else {
+                    res.render('home', {showLogin: false, isLoginAdmin: false, accountsTable: null})
+                }
+            } catch (err) {
                 console.log(err)
                 res.send("not-found")
             }
 
-        }
-        else{
+        } else {
             res.render('index', {showLogin: true, isLoginAdmin: false})
         }
     })
@@ -123,32 +138,35 @@ module.exports = function(passport, saltRounds, bcrypt){
         if (req.isAuthenticated()) {
             var columnsTable = []
             var transactionsTable = []
-            res.render('transaction', {showLogin: false, isLoginAdmin: false, columnsTable: columnsTable, transactionsTable: transactionsTable})
+            res.render('transaction', {
+                showLogin: false,
+                isLoginAdmin: false,
+                columnsTable: columnsTable,
+                transactionsTable: transactionsTable
+            })
         } else {
             res.render('index', {showLogin: true, isLoginAdmin: false})
         }
     })
-    router.post('/transaction', async function(req, res){
-        if(req.isAuthenticated()){
+    router.post('/transaction', async function (req, res) {
+        if (req.isAuthenticated()) {
             var account_id = req.body.account_id
             var date = req.body.date
             var category_type_id = req.body.category_type_id
 
-            try{
+            try {
                 var newTransaction = await transactionController.createTransaction(account_id, date, category_type_id)
                 res.send(newTransaction)
 
-            }catch (err){
+            } catch (err) {
                 console.log(err)
                 res.send("not-found")
             }
 
-        }
-        else{
+        } else {
             res.render('index', {showLogin: true, isLoginAdmin: false})
         }
     })
-
 
 
     return router

@@ -3,33 +3,41 @@
     <div class="table-title">
         <div class="row">
             <div class="col-sm-6">
-                <h2>Your <b>account</b> summary</h2>
-            </div>
-            <div class="col-sm-6">
-                <a href="#addAccount" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i>
-                    <span>Add New Account</span></a>
+                <h2>Account summary</h2>
             </div>
         </div>
     </div>
-                <table class="table table-striped table-hover">
-                    <thead>
-                    <% columnsTable.forEach(element =>{ %>
-                        <tr>
-                            <td><%= element.Field %></td>
-                        </tr>
-                    <% }) %>
-                    </thead>
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <td>BANK</td>
+            <td>ACCOUNT</td>
+            <td>BALANCE</td>
+        </tr>
+        </thead>
 
-                    <tbody>
-                    <% accountsTable.forEach(element =>{ %>
-                        <tr>
-                            <td><%= element.bank_name %></td>
-                            <td><%= element.account_type %></td>
-                            <td>balance</td>
-                        </tr>
-                    <% }) %>
-                    </tbody>
-                </table>
+        <tbody>
+        <% accountsTable.forEach(element =>{ %>
+            <tr>
+                <td><%= element.bank_name %></td>
+                <td><%= element.account_type %></td>
+                <td>balance</td>
+            </tr>
+        <% }) %>
+        </tbody>
+    </table>
+
+
+</div>
+
+<div class="col-sm-3">
+    <a href="#" class="btn btn-success"><span>Data Analysis Report</span></a>
+</div>
+<div class="col-sm-3">
+    <a href="#" class="btn btn-success"><span>Data Analysis Graph</span></a>
+</div>
+<div class="col-sm-6">
+    <a href="#addAccount" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Account</span></a>
 </div>
 <%- include("partials/footer"); -%>
 

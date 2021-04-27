@@ -94,6 +94,7 @@ ul {
     padding: 16px 30px;
     margin: -20px -25px 10px;
     border-radius: 3px 3px 0 0;
+    text-align: left;
 }
 .table-title h2 {
     margin: 5px 0 0;
@@ -172,6 +173,9 @@ table.table .avatar {
     border-radius: 50%;
     vertical-align: middle;
     margin-right: 10px;
+}
+thead{
+    font-weight: bold;
 }
 
 

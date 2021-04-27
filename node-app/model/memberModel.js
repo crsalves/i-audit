@@ -27,9 +27,10 @@ class MemberModel {
             const SELECT = 'SELECT * FROM account\n' +
                 'INNER JOIN bank ON account.bank_id = bank.bank_id\n' +
                 'INNER JOIN account_type ON account.account_type_id = account_type.account_type_id\n' +
-                'WHERE member_id = ?;'
+                'WHERE member_id = ' + member_id + '\n' +
+                'ORDER BY bank_name;'
 
-            connectionDB.query(SELECT, member_id, function(err, rows){
+            connectionDB.query(SELECT, function(err, rows){
                 if(err){
                     return reject(err)
                 }else {
