@@ -294,22 +294,16 @@ module.exports = function (passport, saltRounds, bcrypt) {
         }
     })
 
-    router.post('/edit-transaction', async function (req, res) {
+    router.post('/del-transaction', async function (req, res) {
         if (req.isAuthenticated()) {
             try {
                 var account_id = req.body.account_id
-                var transaction_id = req.body.transaction_id
-                var transaction_date = req.body.transaction_date
-                var category_type_id = req.body.category_type
-                var transaction_type_id = req.body.transaction_type
-                var transaction_value = req.body.transaction_value
-
-                // Adjustment of the value. Note! Number 1 means Debit
-                if (transaction_type_id == 1) {
-                    transaction_value = transaction_value * (-1)
+                var transactionToDelete = req.body.transaction_id
+                if (transactionToDelete != null) {
+                    for(var i = 0; i < transactionToDelete.length; i++){
+                        var deletedTransactions = await transactionController.deleteOneTransaction(account_id, transactionToDelete[i])
+                    }
                 }
-
-                var updatedTransaction = await transactionController.editTransaction(account_id, transaction_id, transaction_date, category_type_id, transaction_type_id, transaction_value)
                 var transactions = await memberController.getAllTransactionsOfOneMember(account_id)
 
                 var transactionsTable = []
@@ -350,7 +344,6 @@ module.exports = function (passport, saltRounds, bcrypt) {
                 console.log(err)
                 res.send("not-found")
             }
-
         } else {
             res.render('index', {showLogin: true, isLoginAdmin: false})
         }

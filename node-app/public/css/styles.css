@@ -185,6 +185,10 @@ thead{
 .holdIDs{
     visibility: hidden;
 }
+.tableRowInput{
+    border-style: hidden;
+    background-color: transparent;
+}
 
 /* Edit Modal styles */
 .modal .modal-dialog {

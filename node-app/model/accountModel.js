@@ -22,20 +22,6 @@ class AccountModel {
         })
     }
 
-    updateAccount(member_id, bank_id, account_type_id){
-        return new Promise(function(resolve,reject){
-            const UPDATE = ''
-
-            connectionDB.query(UPDATE, function (err, rows) {
-                if (err) {
-                    return reject(err)
-                } else {
-                    return resolve(rows)
-                }
-            })
-        })
-    }
-
     selectAccount(account_id){
         return new Promise(function (resolve, reject){
             const SHOW = 'SELECT account.*, bank.bank_name, account_type.account_type FROM account\n' +
