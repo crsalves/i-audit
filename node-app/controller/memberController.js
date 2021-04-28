@@ -24,6 +24,34 @@ class MemberController {
             }
         })
     }
+
+    async getAllTransactionsOfOneMember(account_id) {
+        return new Promise(async function (resolve, reject) {
+            try {
+                var memberAccounts = await memberModel.selectMemberTransactions(account_id)
+                return resolve(memberAccounts)
+            } catch (err) {
+                return reject(err)
+            }
+        })
+    }
+
+    async sumAllTransactionsOfOneMember(account_id) {
+        return new Promise(async function (resolve, reject) {
+            try {
+                var memberAccounts = await memberModel.selectMemberTransactions(account_id)
+
+                var totalTransactionValues = 0
+                memberAccounts.forEach(element =>{
+                    totalTransactionValues += element.transaction_value
+                })
+                return resolve(totalTransactionValues)
+            } catch (err) {
+                return reject(err)
+            }
+        })
+    }
+
 }
 
 module.exports = MemberController

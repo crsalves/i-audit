@@ -39,15 +39,23 @@ CREATE TABLE IF NOT EXISTS `category_type`(
     PRIMARY KEY (`category_type_id`)
 );
 
--- DROP TABLE `transaction`;
+CREATE TABLE IF NOT EXISTS `transaction_type`(
+	`transaction_type_id` INT NOT NULL AUTO_INCREMENT,
+    	`transaction_type` VARCHAR(30) DEFAULT NULL,
+    PRIMARY KEY (`transaction_type_id`)
+);
+
+DROP TABLE `transaction`;
 CREATE TABLE IF NOT EXISTS `transaction`(
     	`transaction_id` INT NOT NULL AUTO_INCREMENT,
-	`account_id` INT,
-	`category_type_id` INT,
-    `transaction_date` DATETIME,
-    `transaction_value` FLOAT,
+	`account_id` INT NOT NULL,
+	`transaction_type_id` INT,
+    `category_type_id` INT,
+    `transaction_date` DATETIME DEFAULT NULL,
+    `transaction_value` FLOAT DEFAULT 0,
     PRIMARY KEY (`transaction_id`, `account_id`),
-    	FOREIGN KEY (`account_id`) REFERENCES `account`(`account_id`),
-	FOREIGN KEY (`category_type_id`) REFERENCES `category_type`(`category_type_id`)
+            FOREIGN KEY (`account_id`) REFERENCES `account`(`account_id`),
+        FOREIGN KEY (`transaction_type_id`) REFERENCES `transaction_type`(`transaction_type_id`),
+		FOREIGN KEY (`category_type_id`) REFERENCES `category_type`(`category_type_id`)
 );
 

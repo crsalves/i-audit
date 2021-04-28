@@ -20,12 +20,8 @@
         <% accountsTable.forEach(element =>{ %>
             <tr>
                 <td><%= element.bank_name %></td>
-                <td><form action="/summary" method="post">
-                        <% var ids = [] %>
-                        <% ids [0] = element.bank_id%>
-                        <% ids [1] = element.account_type_id%>
-                        <button type="submit" class="accountTypeLink" name="selectedAccount" value="<%=ids%>" ><%= element.account_type %></button>
-
+                <td><form action="/transaction" method="post">
+                        <button type="submit" class="accountTypeLink" name="account_id" value="<%= element.account_id%>" ><%= element.account_type %></button>
                     </form></td>
                 <td><%= element.balance %></td>
             </tr>
@@ -54,20 +50,22 @@
         <div class="modal-content">
 
                 <form action="/account" class="customRadio customCheckbox m-0 p-0" method="post">
+                    <input type="text" class="holdIDs" name="account_id" value="<%= accountsTable.account_id %>" >
+
                     <div class="modal-header">
                         <h4 class="modal-title">Add Account</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="row mb-0">
                         <div class="row justify-content-start">
-                            <div class="form-group"><label>Choose your BANK: </label>
+                            <div class="form-group"><label>BANK: </label>
                                 <div class="row"> <input type="radio" name="bank" value="1" checked> <label>RBC</label> </div>
                                 <div class="row"> <input type="radio" name="bank" value="2"> <label>Scotia Bank</label> </div>
                                 <div class="row"> <input type="radio" name="bank" value="3"> <label>Itau</label> </div>
                             </div>
                         </div>
                             <div class="row justify-content-start">
-                            <div class="form-group"><label>Choose your ACCOUNT TYPE : </label>
+                            <div class="form-group"><label>ACCOUNT TYPE : </label>
                                 <div class="row"> <input type="radio" name="account_type" value="1" checked> <label>Chequing</label> </div>
                                 <div class="row"> <input type="radio" name="account_type" value="2"> <label>Saving</label> </div>
                                 <div class="row"> <input type="radio" name="account_type" value="3"> <label>Credit Card</label> </div>

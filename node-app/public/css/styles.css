@@ -182,6 +182,9 @@ thead{
     border: none;
     background-color: transparent;
 }
+.holdIDs{
+    visibility: hidden;
+}
 
 /* Edit Modal styles */
 .modal .modal-dialog {

@@ -15,20 +15,23 @@ module.exports = function (passport, saltRounds, bcrypt) {
 
     router.get('/home', async function (req, res) {
         if (req.isAuthenticated()) {
-            var accounts = await memberController.getAllAccountsOfOneMember(req.user.id)
-            var balance = 0
+            var member_id = req.user.id
+            var accounts = await memberController.getAllAccountsOfOneMember(member_id)
 
             var accountsTable = []
-            accounts.forEach(element =>
+            for (var i = 0; i < accounts.length; i++) {
+                var balance = await memberController.sumAllTransactionsOfOneMember(accounts[i].account_id)
                 accountsTable.push({
-                    "bank_id": element.bank_id,
-                    "bank_name": element.bank_name,
-                    "account_type_id": element.account_type_id,
-                    "account_type": element.account_type,
-                    "balance":balance
-                }))
+                    "account_id": accounts[i].account_id,
+                    "bank_id": accounts[i].bank_id,
+                    "bank_name": accounts[i].bank_name,
+                    "account_type_id": accounts[i].account_type_id,
+                    "account_type": accounts[i].account_type,
+                    "balance": balance
+                })
+            }
 
-            res.render('home', {showLogin: false, isLoginAdmin: false, accountsTable: accountsTable })
+            res.render('home', {showLogin: false, isLoginAdmin: false, accountsTable: accountsTable})
         } else {
             res.render('index', {showLogin: true, isLoginAdmin: false})
         }
@@ -50,17 +53,28 @@ module.exports = function (passport, saltRounds, bcrypt) {
                                 return next(err)
                             } else {
                                 if (req.isAuthenticated()) {
-                                    var accountsTable = await memberController.getAllAccountsOfOneMember(req.user.id)
+                                    var member_id = req.user.id
+                                    var accounts = await memberController.getAllAccountsOfOneMember(member_id)
 
-                                    if (accountsTable[0] != null) {
-                                        res.render('home', {
-                                            showLogin: false,
-                                            isLoginAdmin: false,
-                                            accountsTable: accountsTable
+                                    var accountsTable = []
+                                    for (var i = 0; i < accounts.length; i++) {
+                                        var balance = await memberController.sumAllTransactionsOfOneMember(accounts[i].account_id)
+                                        accountsTable.push({
+                                            "account_id": accounts[i].account_id,
+                                            "bank_id": accounts[i].bank_id,
+                                            "bank_name": accounts[i].bank_name,
+                                            "account_type_id": accounts[i].account_type_id,
+                                            "account_type": accounts[i].account_type,
+                                            "balance": balance
                                         })
-                                    } else {
-                                        res.render('home', {showLogin: false, isLoginAdmin: false, accountsTable: null})
                                     }
+
+                                    res.render('home', {
+                                        showLogin: false,
+                                        isLoginAdmin: false,
+                                        accountsTable: accountsTable
+                                    })
+
                                 } else {
                                     res.render('index', {showLogin: true, isLoginAdmin: false})
                                 }
@@ -86,19 +100,26 @@ module.exports = function (passport, saltRounds, bcrypt) {
                         return next(err)
                     } else {
                         if (req.isAuthenticated()) {
-                            var accounts = await memberController.getAllAccountsOfOneMember(req.user.id)
-                            var balance = 0
+                            var member_id = req.user.id
+                            var accounts = await memberController.getAllAccountsOfOneMember(member_id)
 
                             var accountsTable = []
-                            accounts.forEach(element =>
+                            for (var i = 0; i < accounts.length; i++) {
+                                var balance = await memberController.sumAllTransactionsOfOneMember(accounts[i].account_id)
+                                if (balance == null) {
+                                    balance = 0
+                                }
                                 accountsTable.push({
-                                    "bank_id": element.bank_id,
-                                    "bank_name": element.bank_name,
-                                    "account_type_id": element.account_type_id,
-                                    "account_type": element.account_type,
-                                    "balance":balance
-                                }))
-                                res.render('home', {showLogin: false, isLoginAdmin: false, accountsTable: accountsTable })
+                                    "account_id": accounts[i].account_id,
+                                    "bank_id": accounts[i].bank_id,
+                                    "bank_name": accounts[i].bank_name,
+                                    "account_type_id": accounts[i].account_type_id,
+                                    "account_type": accounts[i].account_type,
+                                    "balance": balance
+                                })
+                            }
+
+                            res.render('home', {showLogin: false, isLoginAdmin: false, accountsTable: accountsTable})
                         } else {
                             res.render('index', {showLogin: true, isLoginAdmin: false})
                         }
@@ -116,26 +137,32 @@ module.exports = function (passport, saltRounds, bcrypt) {
     router.post('/account', async function (req, res) {
 
         if (req.isAuthenticated()) {
-            var member_id = req.user.id
-            var bank_id = req.body.bank
-            var account_type_id = req.body.account_type
-
             try {
+                var member_id = req.user.id
+                var bank_id = req.body.bank
+                var account_type_id = req.body.account_type
+                var account_id = req.body.account_id
+
+
                 var newAccount = await accountController.createAccount(member_id, bank_id, account_type_id)
-                var accounts = await memberController.getAllAccountsOfOneMember(req.user.id)
-                var balance = 0
+                var accounts = await memberController.getAllAccountsOfOneMember(member_id)
+                var balance = await memberController.sumAllTransactionsOfOneMember(account_id)
 
                 var accountsTable = []
+                if (balance == null) {
+                    balance = 0
+                }
                 accounts.forEach(element =>
                     accountsTable.push({
+                        "account_id": element.account_id,
                         "bank_id": element.bank_id,
                         "bank_name": element.bank_name,
                         "account_type_id": element.account_type_id,
                         "account_type": element.account_type,
-                        "balance":balance
+                        "balance": balance
                     }))
 
-                res.render('home', {showLogin: false, isLoginAdmin: false, accountsTable: accountsTable })
+                res.render('home', {showLogin: false, isLoginAdmin: false, accountsTable: accountsTable})
 
             } catch (err) {
                 console.log(err)
@@ -147,39 +174,116 @@ module.exports = function (passport, saltRounds, bcrypt) {
         }
     })
 
-    router.post('/summary', function (req, res) {
+    router.post('/transaction', async function (req, res) {
         if (req.isAuthenticated()) {
-            var selectedAccount = {
-                "bank_id": req.body.selectedAccount[0],
-                "account_type_id": req.body.selectedAccount[2]
+            var account_id = req.body.account_id
+            var result = await accountController.getAccountInfo(account_id)
+            var balance = await memberController.sumAllTransactionsOfOneMember(account_id)
+            if (balance == null) {
+                balance = 0
             }
-
-            console.log(selectedAccount)
-            console.log(selectedAccount.account_type_id)
+            var accountInfo = {
+                "account_id": result[0].account_id,
+                "member_id": result[0].member_id,
+                "bank_id": result[0].bank_id,
+                "bank_name": result[0].bank_name,
+                "account_type_id": result[0].account_type_id,
+                "account_type": result[0].account_type,
+                "balance": balance
+            }
+            var transactions = await memberController.getAllTransactionsOfOneMember(account_id)
 
             var transactionsTable = []
+            if (balance == null) {
+                balance = 0
+            }
+            if (transactions != null) {
+                transactions.forEach(element =>
+                    transactionsTable.push({
+                        "transaction_id": element.transaction_id,
+                        "account_id": element.account_id,
+                        "transaction_date": element.transaction_date,
+                        "category_type": element.category_type,
+                        "transaction_type": element.transaction_type,
+                        "transaction_value": element.transaction_value,
+                        "balance": balance
+                    }))
+            }
 
+            const DATE = new Date()
+            const month = (DATE.getUTCMonth() + 1)
+            const day = DATE.getUTCDate()
+            const year = DATE.getUTCFullYear()
+            const hour = DATE.getUTCHours()
+            const minute = DATE.getUTCMinutes()
+            const second = DATE.getUTCSeconds()
+
+            var currentDate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second
 
             res.render('transaction', {
                 showLogin: false,
                 isLoginAdmin: false,
-                selectedAccount: selectedAccount,
-                transactionsTable: transactionsTable
+                accountInfo: accountInfo,
+                transactionsTable: transactionsTable, currentDate: currentDate
             })
+
+
         } else {
             res.render('index', {showLogin: true, isLoginAdmin: false})
         }
     })
-    router.post('/transaction', async function (req, res) {
+
+    router.post('/add-transaction', async function (req, res) {
         if (req.isAuthenticated()) {
-            var account_id = req.body.account_id
-            var date = req.body.date
-            var category_type_id = req.body.category_type_id
-
             try {
-                var newTransaction = await transactionController.createTransaction(account_id, date, category_type_id)
-                res.send(newTransaction)
+                var account_id = req.body.account_id
+                var transaction_date = req.body.transaction_date
+                var category_type_id = req.body.category_type
+                var transaction_type_id = req.body.transaction_type
+                var transaction_value = req.body.transaction_value
 
+                // Adjustment of the value. Note! Number 1 means Debit
+                if (transaction_type_id == 1) {
+                    transaction_value = transaction_value * (-1)
+                }
+
+                var newTransaction = await transactionController.createTransaction(account_id, transaction_date, category_type_id, transaction_type_id, transaction_value)
+                var transactions = await memberController.getAllTransactionsOfOneMember(account_id)
+
+                var transactionsTable = []
+                if (transactions != null) {
+                    transactions.forEach(element =>
+                        transactionsTable.push({
+                            "transaction_id": element.transaction_id,
+                            "account_id": element.account_id,
+                            "transaction_date": element.transaction_date,
+                            "category_type": element.category_type,
+                            "transaction_type": element.transaction_type,
+                            "transaction_value": element.transaction_value
+                        }))
+                }
+
+                var balance = await memberController.sumAllTransactionsOfOneMember(account_id)
+                if (balance == null) {
+                    balance = 0
+                }
+                var result = await accountController.getAccountInfo(account_id)
+                var accountInfo = {
+                    "account_id": result[0].account_id,
+                    "member_id": result[0].member_id,
+                    "bank_id": result[0].bank_id,
+                    "bank_name": result[0].bank_name,
+                    "account_type_id": result[0].account_type_id,
+                    "account_type": result[0].account_type,
+                    "balance": balance
+                }
+
+                res.render('transaction', {
+                    showLogin: false,
+                    isLoginAdmin: false,
+                    accountInfo: accountInfo,
+                    transactionsTable: transactionsTable
+                })
             } catch (err) {
                 console.log(err)
                 res.send("not-found")
@@ -190,6 +294,67 @@ module.exports = function (passport, saltRounds, bcrypt) {
         }
     })
 
+    router.post('/edit-transaction', async function (req, res) {
+        if (req.isAuthenticated()) {
+            try {
+                var account_id = req.body.account_id
+                var transaction_id = req.body.transaction_id
+                var transaction_date = req.body.transaction_date
+                var category_type_id = req.body.category_type
+                var transaction_type_id = req.body.transaction_type
+                var transaction_value = req.body.transaction_value
+
+                // Adjustment of the value. Note! Number 1 means Debit
+                if (transaction_type_id == 1) {
+                    transaction_value = transaction_value * (-1)
+                }
+
+                var updatedTransaction = await transactionController.editTransaction(account_id, transaction_id, transaction_date, category_type_id, transaction_type_id, transaction_value)
+                var transactions = await memberController.getAllTransactionsOfOneMember(account_id)
+
+                var transactionsTable = []
+                if (transactions != null) {
+                    transactions.forEach(element =>
+                        transactionsTable.push({
+                            "transaction_id": element.transaction_id,
+                            "account_id": element.account_id,
+                            "transaction_date": element.transaction_date,
+                            "category_type": element.category_type,
+                            "transaction_type": element.transaction_type,
+                            "transaction_value": element.transaction_value
+                        }))
+                }
+
+                var balance = await memberController.sumAllTransactionsOfOneMember(account_id)
+                if (balance == null) {
+                    balance = 0
+                }
+                var result = await accountController.getAccountInfo(account_id)
+                var accountInfo = {
+                    "account_id": result[0].account_id,
+                    "member_id": result[0].member_id,
+                    "bank_id": result[0].bank_id,
+                    "bank_name": result[0].bank_name,
+                    "account_type_id": result[0].account_type_id,
+                    "account_type": result[0].account_type,
+                    "balance": balance
+                }
+
+                res.render('transaction', {
+                    showLogin: false,
+                    isLoginAdmin: false,
+                    accountInfo: accountInfo,
+                    transactionsTable: transactionsTable
+                })
+            } catch (err) {
+                console.log(err)
+                res.send("not-found")
+            }
+
+        } else {
+            res.render('index', {showLogin: true, isLoginAdmin: false})
+        }
+    })
 
     return router
 }

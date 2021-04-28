@@ -39,6 +39,25 @@ class MemberModel {
             })
         })
     }
+
+    selectMemberTransactions(account_id){
+        return new Promise(function(resolve, reject){
+            const SELECT = 'SELECT transaction.*, bank.bank_name, category_type.category_type, transaction_type.transaction_type  FROM transaction\n' +
+                'INNER JOIN account ON transaction.account_id = account.account_id\n' +
+                'INNER JOIN bank ON account.bank_id = bank.bank_id\n' +
+                'INNER JOIN category_type ON transaction.category_type_id = category_type.category_type_id\n' +
+                'INNER JOIN transaction_type ON transaction.transaction_type_id = transaction_type.transaction_type_id\n' +
+                'WHERE transaction.account_id = ?;'
+
+            connectionDB.query(SELECT, account_id, function(err, rows){
+                if(err){
+                    return reject(err)
+                }else {
+                    return resolve(rows)
+                }
+            })
+        })
+    }
 }
 
 module.exports = MemberModel
