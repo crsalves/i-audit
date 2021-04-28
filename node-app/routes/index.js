@@ -299,11 +299,18 @@ module.exports = function (passport, saltRounds, bcrypt) {
             try {
                 var account_id = req.body.account_id
                 var transactionToDelete = req.body.transaction_id
-                if (transactionToDelete != null) {
-                    for(var i = 0; i < transactionToDelete.length; i++){
-                        var deletedTransactions = await transactionController.deleteOneTransaction(account_id, transactionToDelete[i])
+
+                if(transactionToDelete != null){
+                    if(typeof (transactionToDelete) != "string"){
+                        for(var i = 0; i < transactionToDelete.length; i++){
+                            var deletedTransaction = await transactionController.deleteOneTransaction(account_id, transactionToDelete[i])
+                        }
+                    }
+                    else{
+                        var deletedTransaction = await transactionController.deleteOneTransaction(account_id, transactionToDelete)
                     }
                 }
+
                 var transactions = await memberController.getAllTransactionsOfOneMember(account_id)
 
                 var transactionsTable = []
