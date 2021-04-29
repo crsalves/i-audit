@@ -64,10 +64,9 @@
                 <td><%= element.transaction_type %></td>
                 <td><%= element.transaction_value %></td>
                 <td>
-                    <input type="submit" class="btn material-icons" data-toggle="tooltip" name="delete" value="&#xE872;">
+                    <input type="submit" class="btnDelIcon material-icons" value="&#xE872;" onclick="return confirmDelete()">
                 </td>
             </tr>
-
         <% }) %>
         </form>
         </tbody>

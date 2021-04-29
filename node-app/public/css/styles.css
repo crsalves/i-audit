@@ -50,6 +50,11 @@ ul {
 .btn{
     color: #03363d;
 }
+.btnDelIcon{
+    border:none;
+    background-color: transparent;
+    color:red
+}
 
 .form-group{
     text-align: left;

@@ -46,6 +46,16 @@
                 }
             })
         })
+
+        function confirmDelete(){
+            var isConfirmed = confirm('This action cannot be undone.\nAre you sure you want to delete these Records?')
+            if (isConfirmed == true) {
+                return true
+            } else {
+                return false
+            }
+        }
+
     </script>
 </head>
 <body>
