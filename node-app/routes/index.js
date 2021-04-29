@@ -233,7 +233,7 @@ module.exports = function (passport, saltRounds, bcrypt) {
         }
     })
 
-    router.post('/add-transaction', async function (req, res) {
+    router.post('/transaction-add', async function (req, res) {
         if (req.isAuthenticated()) {
             try {
                 var account_id = req.body.account_id
@@ -294,7 +294,7 @@ module.exports = function (passport, saltRounds, bcrypt) {
         }
     })
 
-    router.post('/del-transaction', async function (req, res) {
+    router.post('/transaction-delete', async function (req, res) {
         if (req.isAuthenticated()) {
             try {
                 var account_id = req.body.account_id

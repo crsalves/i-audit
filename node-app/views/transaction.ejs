@@ -18,61 +18,74 @@
 </table>
 
 <div class="table-wrapper">
+    <div class="table-title">
+        <div class="row">
+            <form action="/transaction-interval" method="post">
+                <div class="col-sm-9">
+                    <label>From: </label>
+                    <input type="datetime-local" class="calendar" name="transaction_start_date" required>
+                    <label>To: </label>
+                    <input type="datetime-local" class="calendar" name="transaction_end_date" required>
+                    <input type="submit" class="btn btn-success " value="Filter">
+                    <input type="text" class="holdIDs" name="account_id" value="<%= accountInfo.account_id %>">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
+<div class="table-wrapper">
     <div class="table-title">
         <div class="row">
             <div class="col-sm-6">
                 <h1>Transactions</h1>
             </div>
             <div class="col-sm-6">
-                <a href="#addTransaction" class="btn btn-success" data-toggle="modal"><i
-                            class="material-icons">&#xE147;</i>
-                    <span>Add new transaction</span></a>
+                <a href="#addTransaction" class="btn btn-success" data-toggle="modal">
+                    <i class="material-icons">&#xE147;</i>
+                    <span>Add new transaction</span>
+                </a>
             </div>
         </div>
     </div>
+</div>
 
-    <table class="table table-striped table-hover">
-        <thead>
-        <tr>
-            <th>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="selectAll">
-								<label for="selectAll"></label>
-							</span>
-            </th>
-            <th>Date</th>
-            <th>Category</th>
-            <th>Transaction Type</th>
-            <th>Value</th>
-        </tr>
-        </thead>
+<table class="table table-striped table-hover">
+    <form action="/transaction-delete" method="post">
+        <input type="text" class="holdIDs" name="account_id" value="<%= accountInfo.account_id %>">
+    <thead>
+    <tr>
+        <td>
+            <input type="submit" class="btnDelIcon material-icons" value="&#xE872;"
+                   onclick="return confirmDelete()">
+            <span class="custom-checkbox">
+                <input type="checkbox" id="selectAll">
+            </span>
+        </td>
+        <td>Date</td>
+        <td>Category</td>
+        <td>Transaction Type</td>
+        <td>Value</td>
+    </tr>
+    </thead>
+    <tbody>
 
-        <tbody>
-        <form action="/del-transaction" method="post">
-            <input type="text" class="holdIDs" name="account_id" value="<%= accountInfo.account_id %>" >
-        <% transactionsTable.forEach(element =>{ %>
-
+    <% transactionsTable.forEach(element =>{ %>
             <tr>
                 <td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="<%= element.transaction_id %>" name="transaction_id" value="<%= element.transaction_id %>">
-							</span>
+                    <span class="custom-checkbox">
+                        <input type="checkbox" id="<%= element.transaction_id %>" name="transaction_id" value="<%= element.transaction_id %>">
+                    </span>
                 </td>
                 <td><%= element.transaction_date %></td>
                 <td><%= element.category_type %></td>
                 <td><%= element.transaction_type %></td>
                 <td><%= element.transaction_value %></td>
-                <td>
-                    <input type="submit" class="btnDelIcon material-icons" value="&#xE872;" onclick="return confirmDelete()">
-                </td>
             </tr>
         <% }) %>
-        </form>
-        </tbody>
-
-
-    </table>
+    </form>
+    </tbody>
+</table>
 </div>
 
 <br><br><br><br>
@@ -80,26 +93,24 @@
 <br><br><br><br>
 <%- include("partials/footer"); -%>
 
-
 <!-- Add Modal HTML -->
 <div id="addTransaction" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="/add-transaction" class="customRadio customCheckbox m-0 p-0" method="post">
-                <input type="text" class="holdIDs" name="account_id" value="<%= accountInfo.account_id %>" >
-
+            <form action="/transaction-add" class="customRadio customCheckbox m-0 p-0" method="post">
+                <input type="text" class="holdIDs" name="account_id" value="<%= accountInfo.account_id %>">
                 <div class="modal-header">
                     <h4 class="modal-title">Add Transaction</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="row mb-0">
                     <div class="row justify-content-start">
-                        <div class="form-group" ><label>Date: </label>
+                        <div class="form-group"><label>Date: </label>
                             <input type="datetime-local" name="transaction_date" required>
                         </div>
                     </div>
                     <div class="row justify-content-start" required>
-                        <div class="form-group" ><label>CATEGORY: </label>
+                        <div class="form-group"><label>CATEGORY: </label>
                             <div class="row"><input type="radio" name="category_type" value="1" checked>
                                 <label>Salary</label></div>
                             <div class="row"><input type="radio" name="category_type" value="2"> <label>Cash
@@ -118,7 +129,7 @@
                                 <label>Entertainment</label></div>
                         </div>
                     </div>
-                    <div class="row justify-content-start" >
+                    <div class="row justify-content-start">
                         <div class="form-group"><label>DEBIT/CREDIT: </label>
                             <div class="row"><input type="radio" name="transaction_type" value="1">
                                 <label>Debit</label></div>
@@ -128,7 +139,7 @@
                     </div>
                 </div>
                 <div class="row justify-content-start">
-                    <div class="form-group" ><label>Value: </label>
+                    <div class="form-group"><label>Value: </label>
                         <input type="number" name="transaction_value" value="" required>
                     </div>
                 </div>
