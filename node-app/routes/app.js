@@ -358,3 +358,4 @@ module.exports = function (passport, saltRounds, bcrypt) {
 
     return router
 }
+
