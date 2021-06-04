@@ -21,20 +21,28 @@ checkbox.click(function () {
 });
 
 // bind this event to all delete buttons
-$(".delete").click(function(){
+$(".delete").click(function () {
+
     // find the modal body
     var modal = $("#deleteTransaction").find(".modal-body");
 
     // loop through all the check boxes (class checkbox)
-    $(".checkbox").each(function(index){
+    $(".checkbox").each(function () {
 
         // if they are checked, add them to the modal
         var transaction_id = $(this).val();
 
-        if($(this).is(":checked")){
+        if ($(this).is(":checked")) {
+
             // add a hidden input element to modal with article ID as value
-            $(modal).append("<input name='transaction_id' value='"+ transaction_id +"'  type='hidden' />")
+            $(modal).append("<input name='transaction_id' value='" + transaction_id + "' />")
         }
     });
+});
+
+
+$(".edit").click(function () {
+    var b = $(".transactionRow").html()
+    alert(b)
 });
 
