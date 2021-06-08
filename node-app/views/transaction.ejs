@@ -69,30 +69,32 @@
     </tr>
     </thead>
     <tbody>
-        <% transactionsTable.forEach(element =>{ %>
-            <tr class="transactionRow" id="<%= element.transaction_id %>">
-                <td>
+    <% transactionsTable.forEach(element =>{ %>
+        <tr class="transactionRow" id="<%= element.transaction_id %>">
+            <td>
 							<span class="custom-checkbox">
                                 <input type="checkbox" class="checkbox" name="options[]"
                                        value="<%= element.transaction_id %>">
 							</span>
-                </td>
-                <td class="transaction_id"><%= element.transaction_id %></td>
+            </td>
+            <td class="transaction_id"><%= element.transaction_id %></td>
 
-                <td class="transaction_date"><%= element.transaction_date %></td>
-                <td class="category_type"><%= element.category_type %></td>
-                <td class="transaction_type"><%= element.transaction_type %></td>
-                <td class="transaction_value"><%= element.transaction_value %></td>
-                <td id="<%= element.transaction_id%>" class="modalBtn" onClick="reply_click(this)">
-                    <a href="#editTransaction" class="edit" data-toggle="modal" >
-                        <i id="<%= element.transaction_id%>" class="material-icons" data-toggle="tooltip" title="Edit" onClick="checkMyCheckbox(this)">&#xE254;</i>
-                    </a>
-                    <a href="#deleteTransaction" class="delete" data-toggle="modal">
-                        <i id="<%= element.transaction_id%>" class="material-icons" data-toggle="tooltip" title="Delete" onClick="checkMyCheckbox(this)">&#xE872;</i>
-                    </a>
-                </td>
-            </tr>
-        <% }) %>
+            <td class="transaction_date"><%= element.transaction_date %></td>
+            <td class="category_type"><%= element.category_type %></td>
+            <td class="transaction_type"><%= element.transaction_type %></td>
+            <td class="transaction_value"><%= element.transaction_value %></td>
+            <td id="<%= element.transaction_id %>" class="modalBtn" onClick="reply_click(this)">
+                <a href="#editTransaction" class="edit" data-toggle="modal">
+                    <i id="<%= element.transaction_id %>" class="material-icons" data-toggle="tooltip" title="Edit"
+                       onClick="checkMyCheckbox(this)">&#xE254;</i>
+                </a>
+                <a href="#deleteTransaction" class="delete" data-toggle="modal">
+                    <i id="<%= element.transaction_id %>" class="material-icons" data-toggle="tooltip" title="Delete"
+                       onClick="checkMyCheckbox(this)">&#xE872;</i>
+                </a>
+            </td>
+        </tr>
+    <% }) %>
     </tbody>
 </table>
 
@@ -162,7 +164,7 @@
 </div>
 
 <!-- Edit Modal HTML -->
-<div id="editTransaction" class="modal fade" >
+<div id="editTransaction" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <form action="/transaction-edit" class="customRadio customCheckbox m-0 p-0" method="post">
@@ -179,7 +181,7 @@
                     </div>
                     <div class="row justify-content-start" required>
                         <div class="form-group category_type"><label>CATEGORY: </label>
-                            <div class="row "><input type="radio" name="category_type" value="1" >
+                            <div class="row "><input type="radio" name="category_type" value="1">
                                 <label>Salary</label></div>
                             <div class="row "><input type="radio" name="category_type" value="2"> <label>Cash
                                     Back</label></div>

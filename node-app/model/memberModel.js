@@ -47,9 +47,9 @@ class MemberModel {
                 'INNER JOIN bank ON account.bank_id = bank.bank_id\n' +
                 'INNER JOIN category_type ON transaction.category_type_id = category_type.category_type_id\n' +
                 'INNER JOIN transaction_type ON transaction.transaction_type_id = transaction_type.transaction_type_id\n' +
-                'WHERE transaction.account_id = ?;'
+                'WHERE transaction.account_id = ' + account_id + ' ORDER BY transaction_date DESC;'
 
-            connectionDB.query(SELECT, account_id, function(err, rows){
+            connectionDB.query(SELECT, function(err, rows){
                 if(err){
                     return reject(err)
                 }else {

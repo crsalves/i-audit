@@ -40,10 +40,10 @@ $(".delete").click(function () {
     });
 });
 
-function checkMyCheckbox(event){
+function checkMyCheckbox(event) {
     var id = event.id;
     checkbox.each(function () {
-        if(id == this.value){
+        if (id == this.value) {
             this.checked = true;
         }
     });
@@ -72,7 +72,7 @@ function reply_click(event) {
             var seconds = date.getSeconds();
             var sec = (seconds < 10) ? '0' + seconds : seconds;
 
-            var newDateString = yr + '-' + month  + '-' + day;
+            var newDateString = yr + '-' + month + '-' + day;
             var newTimeString = hr + ':' + min;
 
             var excelDateString = newDateString + 'T' + newTimeString;
@@ -110,27 +110,23 @@ function reply_click(event) {
             var transaction_type = row.find(".transaction_type").text()
             if (transaction_type == "Debit") {
                 $("#editTransaction").find(".modal-body input:radio[name=transaction_type]").filter('[value=1]').prop('checked', true);
-            } else if (transaction_type == "Credit"){
+            } else if (transaction_type == "Credit") {
                 $("#editTransaction").find(".modal-body input:radio[name=transaction_type]").filter('[value=2]').prop('checked', true);
             }
 
 
             var transaction_value = row.find(".transaction_value").text()
             // This omits the negative sign from the string
-            if(transaction_value.substring(0, 1) == "-"){
+            if (transaction_value.substring(0, 1) == "-") {
                 transaction_value = transaction_value.substring(1);
             }
             $("#editTransaction").find(".modal-content input:text[name=transaction_value]").prop('value', transaction_value);
 
-
         }
     });
-
-
 }
 
 $(".edit").click(function () {
-    alert("2")
     // find the modal body
     var modal = $("#editTransaction").find(".modal-body");
 
