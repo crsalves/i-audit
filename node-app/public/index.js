@@ -20,6 +20,7 @@ checkbox.click(function () {
     }
 });
 
+
 // bind this event to all delete buttons
 $(".delete").click(function () {
 
@@ -38,6 +39,15 @@ $(".delete").click(function () {
         }
     });
 });
+
+function checkMyCheckbox(event){
+    var id = event.id;
+    checkbox.each(function () {
+        if(id == this.value){
+            this.checked = true;
+        }
+    });
+}
 
 function reply_click(event) {
     var id = event.id;
@@ -115,5 +125,26 @@ function reply_click(event) {
 
         }
     });
+
+
 }
+
+$(".edit").click(function () {
+    alert("2")
+    // find the modal body
+    var modal = $("#editTransaction").find(".modal-body");
+
+    // loop through all the check boxes (class checkbox)
+    $(".checkbox").each(function () {
+
+        // if they are checked, add them to the modal
+        var transaction_id = $(this).val();
+
+
+        if ($(this).is(":checked")) {
+            // add a hidden input element to modal with article ID as value
+            $(modal).append("<input name='transaction_id' value='" + transaction_id + "' hidden/>")
+        }
+    });
+});
 

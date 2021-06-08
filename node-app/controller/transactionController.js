@@ -14,6 +14,17 @@ class TransactionController {
         })
     }
 
+    async updateTransaction(transaction_id, account_id, transaction_date, category_type_id, transaction_type_id, transaction_value) {
+        return new Promise(async function (resolve, reject) {
+            try {
+                var result = await transactionModel.updateTransaction(transaction_id, account_id, transaction_date, category_type_id, transaction_type_id, transaction_value)
+                return resolve(result)
+            } catch (err) {
+                return reject(err)
+            }
+        })
+    }
+
     async deleteOneTransaction(account_id, transaction_id) {
         return new Promise(async function (resolve, reject) {
             try {

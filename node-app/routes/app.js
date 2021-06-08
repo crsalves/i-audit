@@ -294,7 +294,68 @@ module.exports = function (passport, saltRounds, bcrypt) {
         }
     })
 
-    router.post('/transaction-add', async function (req, res) {
+    router.post('/transaction-edit', async function (req, res) {
+        if (req.isAuthenticated()) {
+            try {
+                var account_id = req.body.account_id
+                var transaction_id = req.body.transaction_id
+
+                var transaction_date = req.body.transaction_date
+                var category_type_id = req.body.category_type
+                var transaction_type_id = req.body.transaction_type
+                var transaction_value = req.body.transaction_value
+
+
+                // Adjustment of the value. Note! Number 1 means Debit
+                if (transaction_type_id == 1) {
+                    transaction_value = transaction_value * (-1)
+                }
+
+                var newTransaction = await transactionController.updateTransaction(transaction_id, account_id, transaction_date, category_type_id, transaction_type_id, transaction_value)
+                var transactions = await memberController.getAllTransactionsOfOneMember(account_id)
+
+                var transactionsTable = []
+                if (transactions != null) {
+                    transactions.forEach(element =>
+                        transactionsTable.push({
+                            "transaction_id": element.transaction_id,
+                            "account_id": element.account_id,
+                            "transaction_date": element.transaction_date,
+                            "category_type": element.category_type,
+                            "transaction_type": element.transaction_type,
+                            "transaction_value": element.transaction_value
+                        }))
+                }
+
+                var balance = await memberController.sumAllTransactionsOfOneMember(account_id)
+                if (balance == null) {
+                    balance = 0
+                }
+                var result = await accountController.getAccountInfo(account_id)
+                var accountInfo = {
+                    "account_id": result[0].account_id,
+                    "member_id": result[0].member_id,
+                    "bank_id": result[0].bank_id,
+                    "bank_name": result[0].bank_name,
+                    "account_type_id": result[0].account_type_id,
+                    "account_type": result[0].account_type,
+                    "balance": balance
+                }
+
+                res.render('transaction', {
+                    showLogin: false,
+                    isLoginAdmin: false,
+                    accountInfo: accountInfo,
+                    transactionsTable: transactionsTable
+                })
+            } catch (err) {
+                console.log(err)
+                res.send("not-found")
+            }
+
+        } else {
+            res.render('index', {showLogin: true, isLoginAdmin: false})
+        }
 
     })
 

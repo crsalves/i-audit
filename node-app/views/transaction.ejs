@@ -85,12 +85,11 @@
                 <td class="transaction_value"><%= element.transaction_value %></td>
                 <td id="<%= element.transaction_id%>" class="modalBtn" onClick="reply_click(this)">
                     <a href="#editTransaction" class="edit" data-toggle="modal" >
-                        <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+                        <i id="<%= element.transaction_id%>" class="material-icons" data-toggle="tooltip" title="Edit" onClick="checkMyCheckbox(this)">&#xE254;</i>
                     </a>
                     <a href="#deleteTransaction" class="delete" data-toggle="modal">
-                        <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                        <i id="<%= element.transaction_id%>" class="material-icons" data-toggle="tooltip" title="Delete" onClick="checkMyCheckbox(this)">&#xE872;</i>
                     </a>
-
                 </td>
             </tr>
         <% }) %>
