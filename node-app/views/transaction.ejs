@@ -69,9 +69,7 @@
     </tr>
     </thead>
     <tbody>
-    <form>
         <% transactionsTable.forEach(element =>{ %>
-
             <tr class="transactionRow" id="<%= element.transaction_id %>">
                 <td>
 							<span class="custom-checkbox">
@@ -79,23 +77,23 @@
                                        value="<%= element.transaction_id %>">
 							</span>
                 </td>
-                <td><%= element.transaction_id %></td>
+                <td class="transaction_id"><%= element.transaction_id %></td>
 
                 <td class="transaction_date"><%= element.transaction_date %></td>
                 <td class="category_type"><%= element.category_type %></td>
                 <td class="transaction_type"><%= element.transaction_type %></td>
                 <td class="transaction_value"><%= element.transaction_value %></td>
-                <td id="<%= element.transaction_id %>" class="modalBtn" onClick="reply_click(this.id)">
+                <td id="<%= element.transaction_id%>" class="modalBtn" onClick="reply_click(this)">
                     <a href="#editTransaction" class="edit" data-toggle="modal" >
                         <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
                     </a>
                     <a href="#deleteTransaction" class="delete" data-toggle="modal">
                         <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
                     </a>
+
                 </td>
             </tr>
         <% }) %>
-    </form>
     </tbody>
 </table>
 
@@ -165,7 +163,7 @@
 </div>
 
 <!-- Edit Modal HTML -->
-<div id="editTransaction" class="modal fade">
+<div id="editTransaction" class="modal fade" >
     <div class="modal-dialog">
         <div class="modal-content">
             <form action="/transaction-edit" class="customRadio customCheckbox m-0 p-0" method="post">
