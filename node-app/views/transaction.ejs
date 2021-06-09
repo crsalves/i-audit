@@ -17,22 +17,61 @@
     </tbody>
 </table>
 
-<div class="table-wrapper">
-    <div class="table-title">
-        <div class="row">
-            <form action="/transaction-interval" method="post">
-                <div class="col-sm-9">
-                    <label>From: </label>
-                    <input type="datetime-local" class="calendar" name="transaction_start_date" required>
-                    <label>To: </label>
-                    <input type="datetime-local" class="calendar" name="transaction_end_date" required>
-                    <input type="submit" class="btn btn-success " value="Filter">
-                    <input type="text" class="holdIDs" name="account_id" value="<%= accountInfo.account_id %>">
+<!--<div class="table-wrapper">-->
+<!--    <div class="table-title">-->
+<!--        <div class="row">-->
+<!--            <form action="/transaction-interval" method="post">-->
+<!--                <div class="col-sm-9">-->
+<!--                    <label>From: </label>-->
+<!--                    <input id="transaction_start_date" type="datetime-local" class="calendar" name="transaction_start_date" required>-->
+<!--                    <label>To: </label>-->
+<!--                    <input id="transaction_end_date" type="datetime-local" class="calendar" name="transaction_end_date" required>-->
+<!--                    <input type="submit" class="btn btn-success " value="Filter">-->
+<!--                    <input type="text" class="holdIDs" name="account_id" value="<%= accountInfo.account_id %>">-->
+<!--                </div>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<form action="/transaction-interval" method="post">
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-2">
+                <input type="text" class="holdIDs" name="account_id" value="<%= accountInfo.account_id %>">
                 </div>
-            </form>
+                <div class="col-sm-2">
+                    <label class="labels">Month:</label>
+                    <select name="monthFilter" id="months" class="calendar">
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
+                </div>
+
+                <div class="col-sm-2">
+                    <label class="labels">Year:</label>
+                    <input type="number" class="calendar" name="yearFilter" value="<%= new Date().getFullYear()%>" required>
+                </div>
+
+                <div class="col-sm-2">
+                    <input type="submit" class="btn btn-success btn-lg" value="Filter">
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</form>
+
 
 <div class="table-wrapper">
     <div class="table-title">

@@ -174,6 +174,65 @@ module.exports = function (passport, saltRounds, bcrypt) {
         }
     })
 
+    router.post('/transaction-interval', async function (req, res) {
+        if (req.isAuthenticated()) {
+            var account_id = req.body.account_id
+            var result = await accountController.getAccountInfo(account_id)
+            var balance = await memberController.sumAllTransactionsOfOneMember(account_id)
+            if (balance == null) {
+                balance = 0
+            }
+            var accountInfo = {
+                "account_id": result[0].account_id,
+                "member_id": result[0].member_id,
+                "bank_id": result[0].bank_id,
+                "bank_name": result[0].bank_name,
+                "account_type_id": result[0].account_type_id,
+                "account_type": result[0].account_type,
+                "balance": balance
+            }
+
+            var transactions = await memberController.getAllTransactionsOfOneMember(account_id)
+            var transactionsTable = []
+            if (balance == null) {
+                balance = 0
+            }
+            if (transactions != null) {
+                for(var i = 0; i < transactions.length; i++){
+
+                    var date = new Date(transactions[i].transaction_date);
+                    var yr = date.getFullYear();
+                    var month = date.getMonth() + 1;
+
+                    // These data are from ejs page
+                    var monthFilter = req.body.monthFilter
+                    var yearFilter = req.body.yearFilter
+
+                    if(month == monthFilter && yr == yearFilter){
+                        transactionsTable[i] = {
+                            "transaction_id": transactions[i].transaction_id,
+                            "account_id": transactions[i].account_id,
+                            "transaction_date": transactions[i].transaction_date,
+                            "category_type": transactions[i].category_type,
+                            "transaction_type": transactions[i].transaction_type,
+                            "transaction_value": transactions[i].transaction_value,
+                            "balance": balance
+                        }
+                    }
+                }
+            }
+
+            res.render('transaction', {
+                showLogin: false,
+                isLoginAdmin: false,
+                accountInfo: accountInfo,
+                transactionsTable: transactionsTable
+            })
+        } else {
+            res.render('index', {showLogin: true, isLoginAdmin: false})
+        }
+    })
+
     router.post('/transaction', async function (req, res) {
         if (req.isAuthenticated()) {
             var account_id = req.body.account_id
@@ -210,24 +269,12 @@ module.exports = function (passport, saltRounds, bcrypt) {
                     }))
             }
 
-            const DATE = new Date()
-            const month = (DATE.getUTCMonth() + 1)
-            const day = DATE.getUTCDate()
-            const year = DATE.getUTCFullYear()
-            const hour = DATE.getUTCHours()
-            const minute = DATE.getUTCMinutes()
-            const second = DATE.getUTCSeconds()
-
-            var currentDate = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second
-
             res.render('transaction', {
                 showLogin: false,
                 isLoginAdmin: false,
                 accountInfo: accountInfo,
-                transactionsTable: transactionsTable, currentDate: currentDate
+                transactionsTable: transactionsTable
             })
-
-
         } else {
             res.render('index', {showLogin: true, isLoginAdmin: false})
         }

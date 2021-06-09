@@ -56,6 +56,8 @@ ul {
     color:red
 }
 
+
+
 .form-group{
     text-align: left;
     display: inline-block;
@@ -204,6 +206,11 @@ thead{
 .calendar{
     color: black;
     background-color: white;
+    font-size: 2rem;
+}
+
+.labels{
+    font-size: 2rem;
 }
 
 /* Edit Modal styles */
