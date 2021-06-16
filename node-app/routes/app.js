@@ -193,12 +193,10 @@ module.exports = function (passport, saltRounds, bcrypt) {
             }
 
             var transactions = await memberController.getAllTransactionsOfOneMember(account_id)
+
             var transactionsTable = []
-            if (balance == null) {
-                balance = 0
-            }
             if (transactions != null) {
-                for(var i = 0; i < transactions.length; i++){
+                for (var i = 0; i < transactions.length; i++) {
 
                     var date = new Date(transactions[i].transaction_date);
                     var yr = date.getFullYear();
@@ -208,20 +206,31 @@ module.exports = function (passport, saltRounds, bcrypt) {
                     var monthFilter = req.body.monthFilter
                     var yearFilter = req.body.yearFilter
 
-                    if(month == monthFilter && yr == yearFilter){
+                    if (month == monthFilter && yr == yearFilter) {
+                        var rawDate = new Date(transactions[i].transaction_date);
+
+                        var formattedYear = rawDate.getFullYear();
+                        var rawMonth = rawDate.getMonth() + 1;
+                        var formattedMonth = rawMonth < 10 ? "0" + rawMonth : rawMonth;
+
+                        var rawDay = rawDate.getDate();
+
+                        var formattedDay = rawDay < 10 ? "0" + rawDay : rawDay;
+
+                        var formattedDate = formattedYear + "/" + formattedMonth + "/" + formattedDay;
+
                         transactionsTable[i] = {
                             "transaction_id": transactions[i].transaction_id,
                             "account_id": transactions[i].account_id,
                             "transaction_date": transactions[i].transaction_date,
+                            "transaction_date_formatted": formattedDate,
                             "category_type": transactions[i].category_type,
                             "transaction_type": transactions[i].transaction_type,
-                            "transaction_value": transactions[i].transaction_value,
-                            "balance": balance
+                            "transaction_value": transactions[i].transaction_value
                         }
                     }
                 }
             }
-
             res.render('transaction', {
                 showLogin: false,
                 isLoginAdmin: false,
@@ -253,20 +262,29 @@ module.exports = function (passport, saltRounds, bcrypt) {
             var transactions = await memberController.getAllTransactionsOfOneMember(account_id)
 
             var transactionsTable = []
-            if (balance == null) {
-                balance = 0
-            }
             if (transactions != null) {
-                transactions.forEach(element =>
-                    transactionsTable.push({
-                        "transaction_id": element.transaction_id,
-                        "account_id": element.account_id,
-                        "transaction_date": element.transaction_date,
-                        "category_type": element.category_type,
-                        "transaction_type": element.transaction_type,
-                        "transaction_value": element.transaction_value,
-                        "balance": balance
-                    }))
+                for (var i = 0; i < transactions.length; i++) {
+                    var rawDate = new Date(transactions[i].transaction_date);
+
+                    var formattedYear = rawDate.getFullYear();
+                    var rawMonth = rawDate.getMonth() + 1;
+                    var formattedMonth = rawMonth < 10 ? "0" + rawMonth : rawMonth;
+
+                    var rawDay = rawDate.getDate();
+                    var formattedDay = rawDay < 10 ? "0" + rawDay : rawDay;
+
+                    var formattedDate = formattedYear + "/" + formattedMonth + "/" + formattedDay;
+
+                    transactionsTable[i] = {
+                        "transaction_id": transactions[i].transaction_id,
+                        "account_id": transactions[i].account_id,
+                        "transaction_date": transactions[i].transaction_date,
+                        "transaction_date_formatted": formattedDate,
+                        "category_type": transactions[i].category_type,
+                        "transaction_type": transactions[i].transaction_type,
+                        "transaction_value": transactions[i].transaction_value
+                    }
+                }
             }
 
             res.render('transaction', {
@@ -299,15 +317,28 @@ module.exports = function (passport, saltRounds, bcrypt) {
 
                 var transactionsTable = []
                 if (transactions != null) {
-                    transactions.forEach(element =>
-                        transactionsTable.push({
-                            "transaction_id": element.transaction_id,
-                            "account_id": element.account_id,
-                            "transaction_date": element.transaction_date,
-                            "category_type": element.category_type,
-                            "transaction_type": element.transaction_type,
-                            "transaction_value": element.transaction_value
-                        }))
+                    for (var i = 0; i < transactions.length; i++) {
+                        var rawDate = new Date(transactions[i].transaction_date);
+
+                        var formattedYear = rawDate.getFullYear();
+                        var rawMonth = rawDate.getMonth() + 1;
+                        var formattedMonth = rawMonth < 10 ? "0" + rawMonth : rawMonth;
+
+                        var rawDay = rawDate.getDate();
+                        var formattedDay = rawDay < 10 ? "0" + rawDay : rawDay;
+
+                        var formattedDate = formattedYear + "/" + formattedMonth + "/" + formattedDay;
+
+                        transactionsTable[i] = {
+                            "transaction_id": transactions[i].transaction_id,
+                            "account_id": transactions[i].account_id,
+                            "transaction_date": transactions[i].transaction_date,
+                            "transaction_date_formatted": formattedDate,
+                            "category_type": transactions[i].category_type,
+                            "transaction_type": transactions[i].transaction_type,
+                            "transaction_value": transactions[i].transaction_value
+                        }
+                    }
                 }
 
                 var balance = await memberController.sumAllTransactionsOfOneMember(account_id)
@@ -363,15 +394,28 @@ module.exports = function (passport, saltRounds, bcrypt) {
 
                 var transactionsTable = []
                 if (transactions != null) {
-                    transactions.forEach(element =>
-                        transactionsTable.push({
-                            "transaction_id": element.transaction_id,
-                            "account_id": element.account_id,
-                            "transaction_date": element.transaction_date,
-                            "category_type": element.category_type,
-                            "transaction_type": element.transaction_type,
-                            "transaction_value": element.transaction_value
-                        }))
+                    for (var i = 0; i < transactions.length; i++) {
+                        var rawDate = new Date(transactions[i].transaction_date);
+
+                        var formattedYear = rawDate.getFullYear();
+                        var rawMonth = rawDate.getMonth() + 1;
+                        var formattedMonth = rawMonth < 10 ? "0" + rawMonth : rawMonth;
+
+                        var rawDay = rawDate.getDate();
+                        var formattedDay = rawDay < 10 ? "0" + rawDay : rawDay;
+
+                        var formattedDate = formattedYear + "/" + formattedMonth + "/" + formattedDay;
+
+                        transactionsTable[i] = {
+                            "transaction_id": transactions[i].transaction_id,
+                            "account_id": transactions[i].account_id,
+                            "transaction_date": transactions[i].transaction_date,
+                            "transaction_date_formatted": formattedDate,
+                            "category_type": transactions[i].category_type,
+                            "transaction_type": transactions[i].transaction_type,
+                            "transaction_value": transactions[i].transaction_value
+                        }
+                    }
                 }
 
                 var balance = await memberController.sumAllTransactionsOfOneMember(account_id)
@@ -412,13 +456,12 @@ module.exports = function (passport, saltRounds, bcrypt) {
                 var account_id = req.body.account_id
                 var transactionToDelete = req.body.transaction_id
 
-                if(transactionToDelete != null){
-                    if(typeof (transactionToDelete) != "string"){
-                        for(var i = 0; i < transactionToDelete.length; i++){
+                if (transactionToDelete != null) {
+                    if (typeof (transactionToDelete) != "string") {
+                        for (var i = 0; i < transactionToDelete.length; i++) {
                             var deletedTransaction = await transactionController.deleteOneTransaction(account_id, transactionToDelete[i])
                         }
-                    }
-                    else{
+                    } else {
                         var deletedTransaction = await transactionController.deleteOneTransaction(account_id, transactionToDelete)
                     }
                 }

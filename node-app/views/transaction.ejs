@@ -17,22 +17,6 @@
     </tbody>
 </table>
 
-<!--<div class="table-wrapper">-->
-<!--    <div class="table-title">-->
-<!--        <div class="row">-->
-<!--            <form action="/transaction-interval" method="post">-->
-<!--                <div class="col-sm-9">-->
-<!--                    <label>From: </label>-->
-<!--                    <input id="transaction_start_date" type="datetime-local" class="calendar" name="transaction_start_date" required>-->
-<!--                    <label>To: </label>-->
-<!--                    <input id="transaction_end_date" type="datetime-local" class="calendar" name="transaction_end_date" required>-->
-<!--                    <input type="submit" class="btn btn-success " value="Filter">-->
-<!--                    <input type="text" class="holdIDs" name="account_id" value="<%= accountInfo.account_id %>">-->
-<!--                </div>-->
-<!--            </form>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
 
 <form action="/transaction-interval" method="post">
     <div class="table-wrapper">
@@ -116,9 +100,9 @@
                                        value="<%= element.transaction_id %>">
 							</span>
             </td>
-            <td class="transaction_id"><%= element.transaction_id %></td>
-
-            <td class="transaction_date"><%= element.transaction_date %></td>
+            <td class="transaction_id" hidden><%= element.transaction_id %></td>
+            <td ><%= element.transaction_date_formatted %></td>
+            <td class="transaction_date" hidden><%= element.transaction_date %></td>
             <td class="category_type"><%= element.category_type %></td>
             <td class="transaction_type"><%= element.transaction_type %></td>
             <td class="transaction_value"><%= element.transaction_value %></td>

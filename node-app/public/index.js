@@ -54,6 +54,7 @@ function reply_click(event) {
 
     $("table > tbody > tr").each(function () {
         var row = $(this);
+
         if (row.find(".transaction_id").text() == id) {
             var transaction_date = row.find(".transaction_date").text()
             var date = new Date(transaction_date);
