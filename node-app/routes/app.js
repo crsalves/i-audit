@@ -470,15 +470,28 @@ module.exports = function (passport, saltRounds, bcrypt) {
 
                 var transactionsTable = []
                 if (transactions != null) {
-                    transactions.forEach(element =>
-                        transactionsTable.push({
-                            "transaction_id": element.transaction_id,
-                            "account_id": element.account_id,
-                            "transaction_date": element.transaction_date,
-                            "category_type": element.category_type,
-                            "transaction_type": element.transaction_type,
-                            "transaction_value": element.transaction_value
-                        }))
+                    for (var i = 0; i < transactions.length; i++) {
+                        var rawDate = new Date(transactions[i].transaction_date);
+
+                        var formattedYear = rawDate.getFullYear();
+                        var rawMonth = rawDate.getMonth() + 1;
+                        var formattedMonth = rawMonth < 10 ? "0" + rawMonth : rawMonth;
+
+                        var rawDay = rawDate.getDate();
+                        var formattedDay = rawDay < 10 ? "0" + rawDay : rawDay;
+
+                        var formattedDate = formattedYear + "/" + formattedMonth + "/" + formattedDay;
+
+                        transactionsTable[i] = {
+                            "transaction_id": transactions[i].transaction_id,
+                            "account_id": transactions[i].account_id,
+                            "transaction_date": transactions[i].transaction_date,
+                            "transaction_date_formatted": formattedDate,
+                            "category_type": transactions[i].category_type,
+                            "transaction_type": transactions[i].transaction_type,
+                            "transaction_value": transactions[i].transaction_value
+                        }
+                    }
                 }
 
                 var balance = await memberController.sumAllTransactionsOfOneMember(account_id)
