@@ -192,6 +192,7 @@
         <div class="modal-content">
             <form action="/transaction-edit" class="customRadio customCheckbox m-0 p-0" method="post">
                 <input type="text" class="holdIDs" name="account_id" value="<%= accountInfo.account_id %>">
+                <input type="text" name='transaction_id' value='' hidden/>
                 <div class="modal-header">
                     <h4 class="modal-title">Edit Transaction</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -237,7 +238,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="button" class="btn btn-default cancel" data-dismiss="modal" value="Cancel">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                     <input type="submit" class="btn btn-success" name="edit" value="Save">
                 </div>
             </form>

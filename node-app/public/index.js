@@ -140,8 +140,15 @@ $(".edit").click(function () {
 
         if ($(this).is(":checked")) {
             // add a hidden input element to modal with article ID as value
-            $(modal).append("<input name='transaction_id' value='" + transaction_id + "' hidden/>")
+            // $(modal).find("#transaction_id_edit").value = "171"
+            // var myInput = $(modal).find("#transaction_id_edit").value.text()
+
+            document.querySelector('input[name="transaction_id"]').value = transaction_id;
+            var myInput = document.querySelector('input[name="transaction_id"]').value
+
         }
     });
 });
+
+
 
