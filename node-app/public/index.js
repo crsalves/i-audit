@@ -27,15 +27,29 @@ $(".delete").click(function () {
     // find the modal body
     var modal = $("#deleteTransaction").find(".modal-body");
 
+    $(".checkbox").each(function () {
+        var transaction_id = $(this).val();
+            if ($(this).is(":checked")) {
+            // add a hidden input element to modal with article ID as value
+            $(modal).append("<input type='text' class='myClassTest' name='transaction_id' value='" + transaction_id + "' hidden/>")
+        }
+    });
+});
+
+$(".edit").click(function () {
+    // find the modal body
+    var modal = $("#editTransaction").find(".modal-body");
+
     // loop through all the check boxes (class checkbox)
     $(".checkbox").each(function () {
 
         // if they are checked, add them to the modal
         var transaction_id = $(this).val();
 
+
         if ($(this).is(":checked")) {
-            // add a hidden input element to modal with article ID as value
-            $(modal).append("<input name='transaction_id' value='" + transaction_id + "' hidden/>")
+            document.querySelector('input[name="transaction_id"]').value = transaction_id;
+            var myInput = document.querySelector('input[name="transaction_id"]').value
         }
     });
 });
@@ -50,10 +64,11 @@ function checkMyCheckbox(event) {
 }
 
 function uncheck(){
-
     $(".checkbox").each(function () {
         this.checked = false;
     })
+
+    $("#deleteTransaction").find(".myClassTest").remove()
 
 }
 
@@ -135,23 +150,7 @@ function reply_click(event) {
     });
 }
 
-$(".edit").click(function () {
-    // find the modal body
-    var modal = $("#editTransaction").find(".modal-body");
 
-    // loop through all the check boxes (class checkbox)
-    $(".checkbox").each(function () {
-
-        // if they are checked, add them to the modal
-        var transaction_id = $(this).val();
-
-
-        if ($(this).is(":checked")) {
-            document.querySelector('input[name="transaction_id"]').value = transaction_id;
-            var myInput = document.querySelector('input[name="transaction_id"]').value
-        }
-    });
-});
 
 
 

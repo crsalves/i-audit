@@ -455,6 +455,7 @@ module.exports = function (passport, saltRounds, bcrypt) {
             try {
                 var account_id = req.body.account_id
                 var transactionToDelete = req.body.transaction_id
+                console.log(transactionToDelete)
 
                 if (transactionToDelete != null) {
                     if (typeof (transactionToDelete) != "string") {
