@@ -49,6 +49,14 @@ function checkMyCheckbox(event) {
     });
 }
 
+function uncheck(){
+
+    $(".checkbox").each(function () {
+        this.checked = false;
+    })
+
+}
+
 function reply_click(event) {
     var id = event.id;
 
@@ -139,16 +147,14 @@ $(".edit").click(function () {
 
 
         if ($(this).is(":checked")) {
-            // add a hidden input element to modal with article ID as value
-            // $(modal).find("#transaction_id_edit").value = "171"
-            // var myInput = $(modal).find("#transaction_id_edit").value.text()
-
             document.querySelector('input[name="transaction_id"]').value = transaction_id;
             var myInput = document.querySelector('input[name="transaction_id"]').value
-
         }
     });
 });
+
+
+
 
 
 
