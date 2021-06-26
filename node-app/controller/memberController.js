@@ -36,16 +36,30 @@ class MemberController {
         })
     }
 
-    async sumAllTransactionsOfOneMember(account_id) {
+    async sumAllTransactionsOfOneMember(memberAccounts) {
         return new Promise(async function (resolve, reject) {
             try {
-                var memberAccounts = await memberModel.selectMemberTransactions(account_id)
-
+                var accountsTable = []
                 var totalTransactionValues = 0
-                memberAccounts.forEach(element =>{
-                    totalTransactionValues += element.transaction_value
-                })
-                return resolve(totalTransactionValues)
+                for (var i = 0; i < memberAccounts.length; i++) {
+                    var innerMemberAccounts = await memberModel.selectMemberTransactions(memberAccounts[i].account_id)
+
+                    totalTransactionValues = 0
+                    innerMemberAccounts.forEach(element =>{
+                        totalTransactionValues += element.transaction_value
+                    })
+
+                    accountsTable.push({
+                        "account_id": memberAccounts[i].account_id,
+                        "member_id": memberAccounts[i].member_id,
+                        "bank_id": memberAccounts[i].bank_id,
+                        "bank_name": memberAccounts[i].bank_name,
+                        "account_type_id": memberAccounts[i].account_type_id,
+                        "account_type": memberAccounts[i].account_type,
+                        "balance": totalTransactionValues
+                    })
+                }
+                return resolve(accountsTable)
             } catch (err) {
                 return reject(err)
             }
