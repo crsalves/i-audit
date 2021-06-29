@@ -2,10 +2,6 @@ const express = require('express')
 const router = express.Router()
 const MemberController = require('../controller/memberController')
 const memberController = new MemberController()
-const AccountController = require('../controller/accountController')
-const accountController = new AccountController()
-const TransactionController = require('../controller/transactionController')
-const transactionController = new TransactionController()
 
 module.exports = function (passport, saltRounds, bcrypt) {
 

@@ -8,7 +8,6 @@ const transactionController = new TransactionController()
 
 
 class MemberController {
-
     async registerMember(usernameLogin, hash) {
         return new Promise(async function (resolve, reject) {
             try {
