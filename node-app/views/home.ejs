@@ -18,7 +18,7 @@
         </thead>
 
         <tbody>
-        <% accountsTable.forEach(element =>{ %>
+        <% memberAccounts.forEach(element =>{ %>
             <tr>
                 <td><%= element.bank_name %></td>
                 <td>
@@ -54,7 +54,7 @@
         <div class="modal-content">
 
             <form action="/account-add" class="customRadio customCheckbox m-0 p-0" method="post">
-                <input type="text" class="holdIDs" name="account_id" value="<%= accountsTable.account_id %>">
+                <input type="text" class="holdIDs" name="account_id" value="<%= memberAccounts.account_id %>">
 
                 <div class="modal-header">
                     <h4 class="modal-title">Add Account</h4>

@@ -92,6 +92,11 @@ class TransactionController {
     async createTransaction(account_id, transaction_date, category_type_id, transaction_type_id, transaction_value) {
         return new Promise(async function (resolve, reject) {
             try {
+                // Adjustment of the value. Note! Number 1 means Debit
+                if (transaction_type_id == 1) {
+                    transaction_value = transaction_value * (-1)
+                }
+
                 var result = await transactionModel.insertTransaction(account_id, transaction_date, category_type_id, transaction_type_id, transaction_value)
                 return resolve(result)
             } catch (err) {
@@ -103,6 +108,10 @@ class TransactionController {
     async updateTransaction(transaction_id, account_id, transaction_date, category_type_id, transaction_type_id, transaction_value) {
         return new Promise(async function (resolve, reject) {
             try {
+                // Adjustment of the value. Note! Number 1 means Debit
+                if (transaction_type_id == 1) {
+                    transaction_value = transaction_value * (-1)
+                }
                 var result = await transactionModel.updateTransaction(transaction_id, account_id, transaction_date, category_type_id, transaction_type_id, transaction_value)
                 return resolve(result)
             } catch (err) {
