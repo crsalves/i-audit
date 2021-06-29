@@ -25,17 +25,6 @@ class AccountController {
         })
     }
 
-    async getColumnFields() {
-        return new Promise(async function (resolve, reject) {
-            try {
-                var columnFields = await accountModel.showColumns()
-                return resolve(columnFields)
-            } catch (err) {
-                return reject(err)
-            }
-        })
-    }
-
 
 }
 
