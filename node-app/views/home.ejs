@@ -27,7 +27,7 @@
                                 value="<%= element.account_id %>"><%= element.account_type %></button>
                     </form>
                 </td>
-                <td><%= element.balance %></td>
+                <td><%= (element.balance).toLocaleString('en-US', {minimumFractionDigits:2}) %></td>
             </tr>
         <% }) %>
         </tbody>

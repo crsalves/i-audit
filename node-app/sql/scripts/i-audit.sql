@@ -1,5 +1,5 @@
 -- Create Section
--- DROP DATABASE `i_audit`;
+DROP DATABASE `i_audit`;
 CREATE DATABASE IF NOT EXISTS `i_audit`;
 USE `i_audit`;
 
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `transaction`(
 	`transaction_type_id` INT,
     `category_type_id` INT,
     `transaction_date` DATETIME DEFAULT NULL,
-    `transaction_value` FLOAT DEFAULT 0,
+    `transaction_value` DECIMAL DEFAULT 0,
     PRIMARY KEY (`transaction_id`, `account_id`),
             FOREIGN KEY (`account_id`) REFERENCES `account`(`account_id`),
         FOREIGN KEY (`transaction_type_id`) REFERENCES `transaction_type`(`transaction_type_id`),

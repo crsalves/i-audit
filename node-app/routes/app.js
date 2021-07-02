@@ -155,9 +155,11 @@ module.exports = function (passport, saltRounds, bcrypt) {
     router.post('/transaction-edit', async function (req, res) {
         if (req.isAuthenticated()) {
             try {
+                console.log(req.body.transaction_id)
                 var memberAccountTransactions = await memberController.updateMemberAccountTransaction(
                     req.body.transaction_id,
-                    req.body.account_id, req.body.transaction_date,
+                    req.body.account_id,
+                    req.body.transaction_date,
                     req.body.category_type,
                     req.body.transaction_type,
                     req.body.transaction_value
