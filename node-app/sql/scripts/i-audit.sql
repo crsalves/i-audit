@@ -1,3 +1,4 @@
+-- Create Section
 -- DROP DATABASE `i_audit`;
 CREATE DATABASE IF NOT EXISTS `i_audit`;
 USE `i_audit`;
@@ -45,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `transaction_type`(
     PRIMARY KEY (`transaction_type_id`)
 );
 
-DROP TABLE `transaction`;
+-- DROP TABLE `transaction`;
 CREATE TABLE IF NOT EXISTS `transaction`(
     	`transaction_id` INT NOT NULL AUTO_INCREMENT,
 	`account_id` INT NOT NULL,
@@ -58,4 +59,45 @@ CREATE TABLE IF NOT EXISTS `transaction`(
         FOREIGN KEY (`transaction_type_id`) REFERENCES `transaction_type`(`transaction_type_id`),
 		FOREIGN KEY (`category_type_id`) REFERENCES `category_type`(`category_type_id`)
 );
+
+-- -- Insert Section
+INSERT INTO `i_audit`.`bank`(`bank_name`)
+VALUES("RBC");
+INSERT INTO `i_audit`.`bank`(`bank_name`)
+VALUES("Scotia Bank");
+INSERT INTO `i_audit`.`bank`(`bank_name`)
+VALUES("Itau");
+Select * from bank;
+
+INSERT INTO `i_audit`.`account_type`(`account_type`)
+VALUES("Chequing");
+INSERT INTO `i_audit`.`account_type`(`account_type`)
+VALUES("Saving");
+INSERT INTO `i_audit`.`account_type`(`account_type`)
+VALUES("Credit Card");
+Select * from account_type;
+
+INSERT INTO `i_audit`.`transaction_type`(`transaction_type`)
+VALUES("Debit");
+INSERT INTO `i_audit`.`transaction_type`(`transaction_type`)
+VALUES("Credit");
+Select * from transaction_type;
+
+INSERT INTO `i_audit`.`category_type`(`category_type`)
+VALUES("Salary");
+INSERT INTO `i_audit`.`category_type`(`category_type`)
+VALUES("Cash Back");
+INSERT INTO `i_audit`.`category_type`(`category_type`)
+VALUES("House Rent");
+INSERT INTO `i_audit`.`category_type`(`category_type`)
+VALUES("Electricity");
+INSERT INTO `i_audit`.`category_type`(`category_type`)
+VALUES("Food");
+INSERT INTO `i_audit`.`category_type`(`category_type`)
+VALUES("Internet");
+INSERT INTO `i_audit`.`category_type`(`category_type`)
+VALUES("Personal Care");
+INSERT INTO `i_audit`.`category_type`(`category_type`)
+VALUES("Entertainment");
+Select * from category_type;
 

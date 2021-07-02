@@ -123,6 +123,8 @@ class MemberController {
                         "account_type": memberAccounts[i].account_type,
                         "balance": totalTransactionValues
                     })
+
+
                 }
                 return resolve(accountsTable)
             } catch (err) {
