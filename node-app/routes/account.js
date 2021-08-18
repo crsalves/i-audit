@@ -5,7 +5,7 @@ const memberController = new MemberController()
 
 module.exports = function () {
 
-    router.post('/account-add', async function (req, res) {
+    router.post('/add', async function (req, res) {
         if (req.isAuthenticated()) {
             try {
                 var memberAccounts = await memberController.createMemberAccount(

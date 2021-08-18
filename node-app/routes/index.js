@@ -13,6 +13,15 @@ module.exports = function (passport, saltRounds, bcrypt) {
         res.render('index', {showLogin: true, isLoginAdmin: false})
     })
 
+    router.get('/home', async function (req, res) {
+        if (req.isAuthenticated()) {
+            var memberAccounts = await memberController.getMemberAccounts(req.user.id)
+            res.render('home', {showLogin: false, isLoginAdmin: false, memberAccounts: memberAccounts})
+        } else {
+            res.redirect('/')
+        }
+    })
+
     router.post('/register', function (req, res, next) {
         bcrypt.hash(req.body.memberPasswordLogin, saltRounds, async function (err, hash) {
             try {
@@ -31,7 +40,7 @@ module.exports = function (passport, saltRounds, bcrypt) {
                                     var memberAccounts = await memberController.getMemberAccounts(req.user.id)
                                     res.render('home', {showLogin: false, isLoginAdmin: false, memberAccounts: memberAccounts})
                                 } else {
-                                    res.render('index', {showLogin: true, isLoginAdmin: false})
+                                    res.redirect('/')
                                 }
                             }
                         })
@@ -58,7 +67,7 @@ module.exports = function (passport, saltRounds, bcrypt) {
                             var memberAccounts = await memberController.getMemberAccounts(req.user.id)
                             res.render('home', {showLogin: false, isLoginAdmin: false, memberAccounts: memberAccounts})
                         } else {
-                            res.render('index', {showLogin: true, isLoginAdmin: false})
+                            res.redirect('/')
                         }
                     }
                 })
@@ -66,23 +75,14 @@ module.exports = function (passport, saltRounds, bcrypt) {
         })(req, res, next)
     })
 
-    router.get('/home', async function (req, res) {
-        if (req.isAuthenticated()) {
-            var memberAccounts = await memberController.getMemberAccounts(req.user.id)
-            res.render('home', {showLogin: false, isLoginAdmin: false, memberAccounts: memberAccounts})
-        } else {
-            res.render('index', {showLogin: true, isLoginAdmin: false})
-        }
-    })
-
     router.get('/logout', function (req, res) {
         req.logout()
-        res.render('index', {showLogin: true, isLoginAdmin: false})
+        res.redirect('/')
     })
 
 
-    router.use('/', accountRoute())
-    router.use('/', transactionRoute())
+    router.use('/account', accountRoute())
+    router.use('/transaction', transactionRoute())
 
     return router
 }

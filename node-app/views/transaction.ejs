@@ -18,7 +18,7 @@
 </table>
 
 
-<form action="/transaction-interval" method="post">
+<form action="/transaction/interval" method="post">
     <div class="table-wrapper">
         <div class="table-title">
             <div class="row">
@@ -95,7 +95,7 @@
         <tr class="transactionRow" id="<%= element.transaction_id %>">
             <td>
 							<span class="custom-checkbox">
-                                <input type="checkbox" class="checkbox" name="options[]"
+                                <input type="checkbox" id="<%= element.transaction_id %>" name="options[]"
                                        value="<%= element.transaction_id %>">
 							</span>
             </td>
@@ -130,7 +130,7 @@
 <div id="addTransaction" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="/transaction-add" class="customRadio customCheckbox m-0 p-0" method="post">
+            <form action="/transaction/add" class="customRadio customCheckbox m-0 p-0" method="post">
                 <input type="text" class="holdIDs" name="account_id" value="<%= accountInfo.account_id %>">
                 <div class="modal-header">
                     <h4 class="modal-title">Add Transaction</h4>
@@ -189,7 +189,7 @@
 <div id="editTransaction" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="/transaction-edit" class="customRadio customCheckbox m-0 p-0" method="post">
+            <form action="/transaction/edit" class="customRadio customCheckbox m-0 p-0" method="post">
                 <input type="text" class="holdIDs" name="account_id" value="<%= accountInfo.account_id %>">
                 <input type="text" name='transaction_id' value='' hidden/>
                 <div class="modal-header">
@@ -250,7 +250,7 @@
 <div id="deleteTransaction" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="/transaction-delete" method="post">
+            <form action="/transaction/delete" method="post">
                 <input type="text" class="holdIDs" name="account_id" value="<%= accountInfo.account_id %>">
                 <div class="modal-header">
                     <h4 class="modal-title">Delete Employee</h4>

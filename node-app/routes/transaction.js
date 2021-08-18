@@ -5,7 +5,7 @@ const memberController = new MemberController()
 
 module.exports = function () {
 
-   router.post('/transaction', async function (req, res) {
+   router.post('/', async function (req, res) {
         if (req.isAuthenticated()) {
             var memberAccountTransactions = await memberController.getMemberAccountTransactions(req.body.account_id)
             res.render('transaction', {
@@ -19,7 +19,7 @@ module.exports = function () {
         }
     })
 
-    router.post('/transaction-interval', async function (req, res) {
+    router.post('/interval', async function (req, res) {
         if (req.isAuthenticated()) {
             var memberAccountTransactions = await memberController.getMemberAccountTransactionsByInterval(
                 req.body.id,
@@ -38,7 +38,7 @@ module.exports = function () {
         }
     })
 
-    router.post('/transaction-add', async function (req, res) {
+    router.post('/add', async function (req, res) {
         if (req.isAuthenticated()) {
             try {
                 var memberAccountTransactions = await memberController.createMemberAccountTransaction(
@@ -63,7 +63,7 @@ module.exports = function () {
         }
     })
 
-    router.post('/transaction-edit', async function (req, res) {
+    router.post('/edit', async function (req, res) {
         if (req.isAuthenticated()) {
             try {
                 console.log(req.body.transaction_id)
@@ -91,7 +91,7 @@ module.exports = function () {
         }
     })
 
-    router.post('/transaction-delete', async function (req, res) {
+    router.post('/delete', async function (req, res) {
         if (req.isAuthenticated()) {
             try {
                 var memberAccountTransactions = await memberController.deleteMemberAccountTransaction(
