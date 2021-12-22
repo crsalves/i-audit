@@ -5,13 +5,14 @@
 - [docker/mysql](https://github.com/crsalves/i-audit/tree/main/docker/mysql): contains a docker-compose file used to run a docker container with a MySQL database. 
 - [node-app](https://github.com/crsalves/i-audit/tree/main/node-app): hosts the code of the main node.js backend application. 
 
-
-#### Info   
-  This repository contains a website that main famework uses Bootstrap and its components like Carousel, Card, Buttons, Navbar etc. It also used HTML5, CSS3 and Google Fonts and Font Awesome.
-  I am using docker container because with the dockerfile I have a script that creates a virtual Linux machine to host my database. Thus, it uses the docker compose.
   
 #### About
-  This is a website to control a personal budget. The application was developed using HTML, CSS, and Bootstrap.
+  The goal of the project is to build a web application for personal financial management. 
+  The I-Audit website is a personal project that I've been working on to learn and practice modern technologies used in the industry for the development of software applications.
+  Node.js was the tool I used to develop the backend part of the system. 
+  The data was stored on a MySQL database, and the frontend was implemented using HTML and CSS. 
+  I also worked with Docker containers to host the database and the backend application.
+  
   
 # Screenshots
 ![image](https://user-images.githubusercontent.com/43006731/147130907-182a3788-0866-4b67-9ee5-7cf8dbbabcbb.png)
