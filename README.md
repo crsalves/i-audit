@@ -3,7 +3,7 @@
 #### This repository contains the implementation of a website to manage personal budget.
 
 - [docker/mysql](https://github.com/crsalves/i-audit/tree/main/docker/mysql): contains a docker-compose file used to run a docker container with a MySQL database. 
-- [node-app](https://github.com/crsalves/i-audit/tree/main/node-app): implementation of javascript node application. 
+- [node-app](https://github.com/crsalves/i-audit/tree/main/node-app): hosts the code of the main node.js backend application. 
 
 
 #### Info   
