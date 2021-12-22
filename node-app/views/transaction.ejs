@@ -17,7 +17,6 @@
     </tbody>
 </table>
 
-
 <form action="/transaction/interval" method="post">
     <div class="table-wrapper">
         <div class="table-title">
@@ -92,11 +91,11 @@
     </thead>
     <tbody>
     <% transactionsTable.forEach(element =>{ %>
-        <tr class="transactionRow" id="<%= element.transaction_id %>">
+        <tr class="transactionRow" id="<%= element.transaction_id %>" >
             <td>
 							<span class="custom-checkbox">
                                 <input type="checkbox" id="<%= element.transaction_id %>" name="options[]"
-                                       value="<%= element.transaction_id %>">
+                                       value="<%= element.transaction_id %>" >
 							</span>
             </td>
             <td class="transaction_id" hidden><%= element.transaction_id %></td>
@@ -105,7 +104,7 @@
             <td class="category_type"><%= element.category_type %></td>
             <td class="transaction_type"><%= element.transaction_type %></td>
             <td class="transaction_value"><%= (element.transaction_value).toLocaleString('en-US', {minimumFractionDigits:2}) %></td>
-            <td id="<%= element.transaction_id %>" class="modalBtn" onClick="reply_click(this)">
+            <td id="<%= element.transaction_id %>" class="modalBtn"  onClick="reply_click(this)">
                 <a href="#editTransaction" class="edit" data-toggle="modal">
                     <i id="<%= element.transaction_id %>" class="material-icons" data-toggle="tooltip" title="Edit"
                        onClick="checkMyCheckbox(this)">&#xE254;</i>
@@ -253,7 +252,7 @@
             <form action="/transaction/delete" method="post">
                 <input type="text" class="holdIDs" name="account_id" value="<%= accountInfo.account_id %>">
                 <div class="modal-header">
-                    <h4 class="modal-title">Delete Employee</h4>
+                    <h4 class="modal-title">Delete Transaction</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
