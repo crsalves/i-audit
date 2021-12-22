@@ -7,3 +7,4 @@
   This is a website to control a personal budget. The application was developed using HTML, CSS, and Bootstrap.
   
 # Screenshots
+![image](https://user-images.githubusercontent.com/43006731/147130907-182a3788-0866-4b67-9ee5-7cf8dbbabcbb.png)
