@@ -1,5 +1,11 @@
 # i-audit
 
+#### This repository contains the implementation of a website to manage personal budget.
+
+- [docker](https://github.com/crsalves/i-audit/tree/main/mysql): implementation of mysql compose file. 
+- [node-app](https://github.com/crsalves/i-audit/tree/main/node-app): implementation of javascript node application. 
+
+
 #### Info   
   This repository contains a website that main famework uses Bootstrap and its components like Carousel, Card, Buttons, Navbar etc. It also used HTML5, CSS3 and Google Fonts and Font Awesome.
   I am using docker container because with the dockerfile I have a script that creates a virtual Linux machine to host my database. Thus, it uses the docker compose.
