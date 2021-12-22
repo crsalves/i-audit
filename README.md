@@ -10,7 +10,7 @@
 - [node-app](https://github.com/crsalves/i-audit/tree/main/node-app): hosts the code of the main node.js backend application. 
   
   
-# Screenshots
+#### Screenshots
 ![image](https://user-images.githubusercontent.com/43006731/147130907-182a3788-0866-4b67-9ee5-7cf8dbbabcbb.png)
 
 ![image](https://user-images.githubusercontent.com/43006731/147156937-abf4a2e6-a051-4a18-8819-b5b5ae867690.png)
