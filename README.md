@@ -2,6 +2,7 @@
 
 #### Info   
   This repository contains a website that main famework uses Bootstrap and its components like Carousel, Card, Buttons, Navbar etc. It also used HTML5, CSS3 and Google Fonts and Font Awesome.
+  I am using docker container because with the dockerfile I have a script that creates a virtual Linux machine to host my database.
   
 #### About
   This is a website to control a personal budget. The application was developed using HTML, CSS, and Bootstrap.
