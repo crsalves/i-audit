@@ -30,7 +30,11 @@
     
     This folder contains:
     - [controller](https://github.com/crsalves/i-audit/tree/main/node-app/controller): files containing the codes with the logic of the program.
-    - [model](https://github.com/crsalves/i-audit/tree/main/node-app/model): files containing the codes related to the database.
+    - [model](https://github.com/crsalves/i-audit/tree/main/node-app/model): files containing the database query for CRUD functions.
+    - [public](https://github.com/crsalves/i-audit/tree/main/node-app/public): it holds the CSS folder and the index.js that holds the jQuery coding.
+    - [routes](https://github.com/crsalves/i-audit/tree/main/node-app/routes): these files define the routing  methods of the Express app object that correspond to HTTP methods such as get, and post.
+    - [sql](https://github.com/crsalves/i-audit/tree/main/node-app/sql): it holds the scripts folder and the schema files.
+    - [views](https://github.com/crsalves/i-audit/tree/main/node-app/views): it holds the partial folder that contains the header.ejs and footer.ejs files. In addition, this directory has the all web pages available in this application.
     
   
   #### Project Structure
