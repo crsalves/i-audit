@@ -18,7 +18,7 @@
     * The system should allow the use to record the folloing list of transactions:
       - Debit
       - Credit
-    * The system should allow the users to edit and delete transactions already registered  
+    * The system should allow the users to **edit** and **delete** transactions already registered  
 
   
   #### Project Structure
