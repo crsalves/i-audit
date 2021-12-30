@@ -14,11 +14,11 @@
     This section contains details of the I-Audit system design.
  1. **Functional Requirements**
     Functional requirements define the features that a system should have. So, this section describes the main functional requirements of the I-Audit system:
-    ..* The system should have a login and a logout function
-    ..* The system should allow the use to record the folloing list of transactions:
-      ..*. Debit
-      ..2. Credit
-    ..* The system should allow the users to edit and delete transactions already registered  
+    * The system should have a login and a logout function
+    * The system should allow the use to record the folloing list of transactions:
+      - Debit
+      - Credit
+    * The system should allow the users to edit and delete transactions already registered  
 
   
   #### Project Structure
