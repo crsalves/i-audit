@@ -36,6 +36,8 @@
     - [sql](https://github.com/crsalves/i-audit/tree/main/node-app/sql): it holds the scripts folder and the schema files.
     - [views](https://github.com/crsalves/i-audit/tree/main/node-app/views): it holds the partial folder that contains the header.ejs and footer.ejs files. In addition, this directory has the all web pages available in this application.
     
+    Furthermore, it contains javacript files to configure and connect the database. Moreover, it holds some json files. Finally, there is the sever.js that is the main file of the application.
+    
   
   #### Project Structure
   This project contains two main folders:
