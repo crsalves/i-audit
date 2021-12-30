@@ -20,6 +20,15 @@
       - Credit
     * The system should allow the users to **edit** and **delete** transactions already registered  
 
+  2. **Database Schema**
+    Through UML diagram, first I designed the tables and their relationships. So, some tables have one-to-many relation, while others have one-to-one relation, but none has many-to-many relationship. 
+    Second, I created the schema using the MySQL Workbench.
+    
+  3. **Node-app Design**
+    This folder contains:
+    - [controller](https://github.com/crsalves/i-audit/tree/main/node-app/controller): files containing the logic of the program.
+    
+    
   
   #### Project Structure
   
