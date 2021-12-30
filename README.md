@@ -16,7 +16,7 @@
     Functional requirements define the features that a system should have. So, this section describes the main functional requirements of the I-Audit system:
     ..* The system should have a login and a logout function
     ..* The system should allow the use to record the folloing list of transactions:
-      ..1. Debit
+      ..*. Debit
       ..2. Credit
     ..* The system should allow the users to edit and delete transactions already registered  
 
