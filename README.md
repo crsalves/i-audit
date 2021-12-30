@@ -29,8 +29,8 @@
  3. **Node-app Design**
     
     This folder contains:
-    - [controller](https://github.com/crsalves/i-audit/tree/main/node-app/controller): files containing the logic of the program.
-    
+    - [controller](https://github.com/crsalves/i-audit/tree/main/node-app/controller): files containing the codes with the logic of the program.
+    - [model](https://github.com/crsalves/i-audit/tree/main/node-app/model): files containing the codes related to the database.
     
   
   #### Project Structure
