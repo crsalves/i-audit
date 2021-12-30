@@ -1,9 +1,27 @@
 # i-audit
   
 #### About
-  The goal of the project is to build a web application for personal financial management. The I-Audit website is a personal project that I've been working on to learn and practice modern technologies used in the industry for the development of software applications. Node.js was the tool I used to develop the backend part of the system. The data was stored on a MySQL database, and the frontend was implemented using HTML and CSS. I also worked with Docker containers to host the database and the backend application.
+  The project's goal is to build a web application for financial management. The I-Audit website is a personal project that I've been working on to learn and practice modern technologies used in the industry to develop software applications.
+  In this project, the frontend and the backend parts are implemented in a single component. 
+  Node.js, Javascript, and EJS are the tools I used to develop the backend part of the system.
+  The frontend code was generated using HTML, CSS, and Javascript.
+  MySQL is the database used to store the application's data.
+  Also, I worked with Docker containers to host the MySQL database and the node application.
   
-  #### Project structure
+  The following sections contain more details about the project:  
+  
+  #### System Design
+    This section contains details of the I-Audit system design.
+ 1. **Functional Requirements**
+    Functional requirements define the features that a system should have. So, this section describes the main functional requirements of the I-Audit system:
+    ..* The system should have a login and a logout function
+    ..* The system should allow the use to record the folloing list of transactions:
+      ..1. Debit
+      ..2. Credit
+    ..* The system should allow the users to edit and delete transactions already registered  
+
+  
+  #### Project Structure
   
   This project contains two main folders:
 - [docker/mysql](https://github.com/crsalves/i-audit/tree/main/docker/mysql): contains a docker-compose file used to run a docker container with a MySQL database. 
