@@ -1,5 +1,5 @@
 -- Create Section
-DROP DATABASE `i_audit`;
+DROP DATABASE IF EXISTS `i_audit`;
 CREATE DATABASE IF NOT EXISTS `i_audit`;
 USE `i_audit`;
 
@@ -84,20 +84,25 @@ VALUES("Credit");
 Select * from transaction_type;
 
 INSERT INTO `i_audit`.`category_type`(`category_type`)
-VALUES("Salary");
-INSERT INTO `i_audit`.`category_type`(`category_type`)
 VALUES("Cash Back");
 INSERT INTO `i_audit`.`category_type`(`category_type`)
-VALUES("House Rent");
+VALUES("Education");
 INSERT INTO `i_audit`.`category_type`(`category_type`)
 VALUES("Electricity");
 INSERT INTO `i_audit`.`category_type`(`category_type`)
+VALUES("Entertainment");
+INSERT INTO `i_audit`.`category_type`(`category_type`)
 VALUES("Food");
+INSERT INTO `i_audit`.`category_type`(`category_type`)
+VALUES("House Rent");
 INSERT INTO `i_audit`.`category_type`(`category_type`)
 VALUES("Internet");
 INSERT INTO `i_audit`.`category_type`(`category_type`)
 VALUES("Personal Care");
 INSERT INTO `i_audit`.`category_type`(`category_type`)
-VALUES("Entertainment");
+VALUES("Phone");
+INSERT INTO `i_audit`.`category_type`(`category_type`)
+VALUES("Salary");
+INSERT INTO `i_audit`.`category_type`(`category_type`)
+VALUES("Transportation");
 Select * from category_type;
-
