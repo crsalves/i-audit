@@ -27,24 +27,24 @@ This section contains details of the I-Audit system design.
 
    Functional requirements define the features that a system should have. So, this section describes the main functional requirements of the I-Audit system:
 
-    * The system should have register, login, and logout functions
-    * The system should allow the user to record debit/credit transactions among the items on the category list:
-        - Cash Back
-        - Education
-        - Electricity
-        - Entertainment
-        - Food
-        - House Rent
-        - Internet
-        - Personal Care
-        - Phone
-        - Salary
-        - Transportation
-    * The system should allow the users to **edit** and **delete** transactions already registered
-    * The system should allow the users to add a new bank account
-    * The system should allow the users to filter the transactions by month and year
-    * The system should allow the users to see the balance of the account after each transaction      
-    
+ * The system should have register, login, and logout functions
+ * The system should allow the user to record debit/credit transactions among the items on the category list:
+    - Cash Back
+    - Education
+    - Electricity
+    - Entertainment
+    - Food
+    - House Rent
+    - Internet
+    - Personal Care
+    - Phone
+    - Salary
+    - Transportation
+ * The system should allow the users to **edit** and **delete** transactions already registered
+ * The system should allow the users to add a new bank account
+ * The system should allow the users to filter the transactions by month and year
+ * The system should allow the users to see the balance of the account after each transaction      
+   
 
 ##### 2. Database Schema
 
