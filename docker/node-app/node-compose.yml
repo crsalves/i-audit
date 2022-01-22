@@ -3,9 +3,9 @@ services:
   i-audit-node-app:
     # this build uses the Dockerfile to create an image
     build: ../../node-app
-    image: i-audit-v1-img-node-app
-    container_name: i-audit-v1-container-node-app
-    hostname: i-audit-v1-node-app
+    image: i-audit-img-node-app
+    container_name: i-audit-container-node-app
+    hostname: i-audit-node-app
     ports:
       - "8080:8080"
     networks:
@@ -14,5 +14,5 @@ services:
 
 networks:
   i-audit:
-    name: i-audit-v1
+    name: i-audit
     driver: bridge
