@@ -3,8 +3,8 @@ services:
   mysql-i-audit:
     # this container uses an image from docker hub using "docker pull" command under the hood
     image: mysql:5.7
-    container_name: mysql-i-audit-v1
-    hostname: mysql-i-audit-v1
+    container_name: mysql-i-audit
+    hostname: mysql-i-audit
     ports:
       - "3307:3306"
     networks:
@@ -14,5 +14,5 @@ services:
 
 networks:
   i-audit:
-    name: i-audit-v1
+    name: i-audit
     driver: bridge
