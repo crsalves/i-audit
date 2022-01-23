@@ -1,17 +1,4 @@
 # i-audit
-
-### Table of Content
-
-- [About](#about)
-- [System Design](#system-design)
-  - [1. Functional Requirements](#1-functional-requirements)
-  - [2. Database Schema](#2-database-schema)
-  - [3. Node-app Design](#3-node-app-design)
-- [Project Local Setup:](#project-local-setup)
-- [Other folders](#other-folders)
-  - [1. docker](#1-docker)
-  - [2. Scripts](#2-scripts)
-- [Screenshot](#screenshot)
  
 ## About
 
