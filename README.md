@@ -62,6 +62,8 @@ These are the steps required to run the project:
 
          git clone git@github.com:crsalves/i-audit.git
 
+      > If you get the error "Permission denied (publickey)", you need to generate and add a new SSH key. Please, follow instructions: `https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent`
+
 2. Open the project in an IDE (for example: WebStorm);
 3. Setup the **database**:
    
