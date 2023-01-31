@@ -58,14 +58,22 @@ This section contains details of the I-Audit system design.
 
 These are the steps required to run the project:
 
-1. Clone the repository from github
+1. Program requirements
+      - Node.js v14.x (Tutorial for Ubuntu: `https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-22-04`)
+      - Docker Engine v20.10.22 (Tutorial for Ubuntu: `https://docs.docker.com/engine/install/ubuntu/`)
+      - MySQL v8.0.32
+
+   
+2.  Clone the repository from github
 
          git clone git@github.com:crsalves/i-audit.git
 
       > If you get the error "Permission denied (publickey)", you need to generate and add a new SSH key. Please, follow instructions: `https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent`
 
-2. Open the project in an IDE (for example: WebStorm);
-3. Setup the **database**:
+3. Open the project in an IDE (for example: Visual Studio, WebStorm, or any that supports JavaScript);
+
+
+4. Setup the **database**:
    
    In this step, we use docker-compose to setup a MySQL database. Below are the required steps:
 
