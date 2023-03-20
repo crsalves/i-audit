@@ -2,6 +2,7 @@ version: "3.9"
 services:
   mysql-i-audit:
     # this container uses an image from docker hub using "docker pull" command under the hood
+    platform: linux/amd64
     image: mysql:5.7
     container_name: mysql-i-audit
     hostname: mysql-i-audit
