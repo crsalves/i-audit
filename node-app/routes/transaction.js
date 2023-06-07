@@ -8,7 +8,7 @@ module.exports = function () {
     router.post('/', async function (req, res) { // This POST method works as a GET
         if (req.isAuthenticated()) {
             var memberAccountTransactions = await memberController.getMemberAccountTransactions(req.body.account_id) // This line calls the controller -> model (consult DB) -> views (to create html page through ejs) -> render to routes
-            res.render('transaction', {
+            res.render('transaction', { // this render the transaction.ejs html page???
                 showLogin: false,
                 isLoginAdmin: false,
                 accountInfo: memberAccountTransactions[0][0],
