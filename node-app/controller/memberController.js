@@ -183,6 +183,8 @@ class MemberController {
             } else {
                 await transactionController.deleteOneTransaction(account_id, transaction_id)
             }
+            console.log("controller1")
+
 
             var memberAccountTransactions = await this.getMemberAccountTransactions(account_id)
         }

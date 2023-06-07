@@ -38,7 +38,6 @@ class TransactionController {
         })
     }
 
-
     async getTransactionTableInterval(transactions, mFilter, yFilter) {
         return new Promise(async function (resolve, reject) {
             try {
@@ -87,7 +86,6 @@ class TransactionController {
             }
         })
     }
-
 
     async createTransaction(account_id, transaction_date, category_type_id, transaction_type_id, transaction_value) {
         return new Promise(async function (resolve, reject) {
