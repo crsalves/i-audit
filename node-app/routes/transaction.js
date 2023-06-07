@@ -94,12 +94,12 @@ module.exports = function () {
     router.post('/delete', async function (req, res) {
         if (req.isAuthenticated()) {
             try {
-                console.log("account id: ", req.body.account_id)
-                console.log("transaction id: ", req.body.transaction_id)
+                console.log("route account id: ", req.body.row_account_id)
+                console.log("route transaction id: ", req.body.row_transaction_id)
 
                 var memberAccountTransactions = await memberController.deleteMemberAccountTransaction(
-                    req.body.account_id,
-                    req.body.transaction_id
+                    req.body.row_account_id,
+                    req.body.row_transaction_id
                 )
                 res.render('transaction', {
                     showLogin: false,

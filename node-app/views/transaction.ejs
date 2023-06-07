@@ -75,9 +75,6 @@
                 <div class="col-sm-6">
                     <a href="#addTransaction" class="btn btn-success" data-toggle="modal"><i
                             class="material-icons">&#xE147;</i> <span>Add New Transaction</span></a>
-                    <a href="#deleteTransaction" class="delete btn btn-danger" data-toggle="modal"><i
-                            class="material-icons">&#xE15C;</i>
-                        <span>Delete</span></a>
                 </div>
             </div>
         </div>
@@ -87,11 +84,7 @@
         <input type="text" class="holdIDs" name="account_id" value="<%= accountInfo.account_id %>">
         <thead>
             <tr>
-                <th><span class="custom-checkbox">
-                        <input type="checkbox" id="selectAll">
-                        <label for="selectAll"></label>
-                    </span>
-                </th>
+                <th>Transaction ID</th>
                 <th>Date</th>
                 <th>Category</th>
                 <th>Transaction Type</th>
@@ -99,43 +92,34 @@
             </tr>
         </thead>
         <tbody>
-            <% transactionsTable.forEach(element=>{ %>
-                <tr class="transactionRow" id="<%= element.transaction_id %>">
-                    <td>
-                        <span class="custom-checkbox">
-                            <input type="checkbox" id="<%= element.transaction_id %>" name="options[]"
-                                value="<%= element.transaction_id %>">
-                        </span>
-                    </td>
-                    <td class="transaction_id" hidden>
-                        <%= element.transaction_id %>
-                    </td>
-                    <td>
-                        <%= element.transaction_date_formatted %>
-                    </td>
-                    <td class="transaction_date" hidden>
-                        <%= element.transaction_date %>
-                    </td>
-                    <td class="category_type">
-                        <%= element.category_type %>
-                    </td>
-                    <td class="transaction_type">
-                        <%= element.transaction_type %>
-                    </td>
-                    <td class="transaction_value">
-                        <%= (element.transaction_value).toLocaleString('en-US', {minimumFractionDigits: 2}) %>
-                    </td>
-                    <td id="<%= element.transaction_id %>" class="modalBtn" onClick="reply_click(this)">
-                        <a href="#editTransaction" class="edit" data-toggle="modal">
-                            <i id="<%= element.transaction_id %>" class="material-icons" data-toggle="tooltip"
-                                title="Edit" onClick="checkMyCheckbox(this)">&#xE254;</i>
-                        </a>
-                        <a href="#deleteTransaction" class="delete" data-toggle="modal">
-                            <i id="<%= element.transaction_id %>" class="material-icons" data-toggle="tooltip"
-                                title="Delete" onClick="checkMyCheckbox(this)">&#xE872;</i>
-                        </a>
-                    </td>
-                </tr>
+            <% transactionsTable.forEach(function(element){ %>
+                <form action="/transaction/delete" method="post">
+                    <input type="text" class="holdIDs" name="row_account_id" value="<%= accountInfo.account_id %>">
+                    <input type="text" class="holdIDs" name="row_transaction_id" value="<%= element.transaction_id %>">
+                    <tr>
+                        <td>
+                            <%= element.transaction_id %>
+                        </td>
+                        <td>
+                            <%= element.transaction_date_formatted %>
+                        </td>
+                        <td hidden>
+                            <%= element.transaction_date %>
+                        </td>
+                        <td>
+                            <%= element.category_type %>
+                        </td>
+                        <td>
+                            <%= element.transaction_type %>
+                        </td>
+                        <td>
+                            <%= (element.transaction_value).toLocaleString('en-US', {minimumFractionDigits: 2}) %>
+                        </td>
+                        <td>
+                            <input type="checkbox" onchange="this.form.submit()">
+                        </td>
+                    </tr>
+                </form>
                 <% }) %>
         </tbody>
     </table>
@@ -309,12 +293,13 @@
                 </div>
 
                 <!-- Delete Modal HTML -->
-                <div id="deleteTransaction" class="modal fade">
+                <!-- <div id="deleteTransaction" class="modal fade">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <form action="/transaction/delete" method="post">
                                 <input type="text" class="holdIDs" name="account_id"
                                     value="<%= accountInfo.account_id %>">
+
                                 <div class="modal-header">
                                     <h4 class="modal-title">Delete Transaction</h4>
                                     <button type="button" class="close" data-dismiss="modal"
@@ -332,4 +317,4 @@
                             </form>
                         </div>
                     </div>
-                </div>
+                </div> -->
