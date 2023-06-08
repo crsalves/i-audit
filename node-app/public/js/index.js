@@ -1,47 +1,16 @@
-$(document).ready(function () {
-    // Activate tooltip
-    $('[data-toggle="tooltip"]').tooltip();
 
-    // Select/Deselect checkboxes
-    var checkbox = $('table tbody input[type="checkbox"]');
 
-    $("#selectAll").click(function () {
-        if (this.checked) {
-            checkbox.each(function () {
-                this.checked = true;
-            });
-        } else {
-            checkbox.each(function () {
-                this.checked = false;
-            });
-        }
-    });
+$(".delete").click(function () {
+    var modal = $("#deleteTransaction").find(".modal-body");
+    var transaction_id = $(this).attr("id");
+    console.log(transaction_id)
 
-    checkbox.click(function () {
-        if (!this.checked) {
-            $("#selectAll").prop("checked", false);
-        }
-    });
+
+    $(modal).append("<input type='text' class='myClassTest' name='transaction_id' value='" + transaction_id + "' hidden/>")
 });
 
-
-function checkMyCheckbox(event) {
-    if (this.checked) {
-        alert("bingo")
-    }
-}
-
-function uncheck() {
-    $(".checkbox").each(function () {
-        this.checked = false;
-    })
-
-    $("#deleteTransaction").find(".myClassTest").remove()
-
-}
-
 function reply_click(event) {
-    var id = event.id;// transaction_id
+    var id = event.id;
 
     $("table > tbody > tr").each(function () {
         var row = $(this);
@@ -118,6 +87,7 @@ function reply_click(event) {
     });
 }
 
-function delete_(){
 
-}
+
+
+

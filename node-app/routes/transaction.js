@@ -5,10 +5,10 @@ const memberController = new MemberController()
 
 module.exports = function () {
 
-    router.post('/', async function (req, res) { // This POST method works as a GET
+    router.post('/', async function (req, res) {
         if (req.isAuthenticated()) {
-            var memberAccountTransactions = await memberController.getMemberAccountTransactions(req.body.account_id) // This line calls the controller -> model (consult DB) -> views (to create html page through ejs) -> render to routes
-            res.render('transaction', { // this render the transaction.ejs html page???
+            var memberAccountTransactions = await memberController.getMemberAccountTransactions(req.body.account_id)
+            res.render('transaction', {
                 showLogin: false,
                 isLoginAdmin: false,
                 accountInfo: memberAccountTransactions[0][0],
@@ -94,12 +94,9 @@ module.exports = function () {
     router.post('/delete', async function (req, res) {
         if (req.isAuthenticated()) {
             try {
-                console.log("route account id: ", req.body.row_account_id)
-                console.log("route transaction id: ", req.body.row_transaction_id)
-
                 var memberAccountTransactions = await memberController.deleteMemberAccountTransaction(
-                    req.body.row_account_id,
-                    req.body.row_transaction_id
+                    req.body.account_id,
+                    req.body.transaction_id
                 )
                 res.render('transaction', {
                     showLogin: false,
@@ -107,14 +104,11 @@ module.exports = function () {
                     accountInfo: memberAccountTransactions[0][0],
                     transactionsTable: memberAccountTransactions[1]
                 })
-
-
             } catch (err) {
                 console.log(err)
-                res.send("not-found bingo")
+                res.send("not-found")
             }
-        }
-        else {
+        } else {
             res.render('index', { showLogin: true, isLoginAdmin: false })
         }
     })
