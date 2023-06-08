@@ -107,10 +107,12 @@
                         <%= (element.transaction_value).toLocaleString('en-US', {minimumFractionDigits: 2}) %>
                     </td>
                     <td>
-                        <a id="<%= element.transaction_id %>" href="#editTransaction" class="edit" data-toggle="modal">
+                        <a id="<%= element.transaction_id %>" href="#editTransaction" class="edit" data-toggle="modal"
+                            onClick="populate_modal_window(this)">
                             <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
                         </a>
-                        <a id="<%= element.transaction_id %>" href="#deleteTransaction" class="delete" data-toggle="modal">
+                        <a id="<%= element.transaction_id %>" href="#deleteTransaction" class="delete"
+                            data-toggle="modal">
                             <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
                         </a>
                     </td>
@@ -278,7 +280,8 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel"
+                                        onclick="remove_transaction_id_edit_append()">
                                     <input type="submit" class="btn btn-success" name="edit" value="Save">
                                 </div>
                             </form>
@@ -304,7 +307,8 @@
                                     <p class="text-warning"><small>This action cannot be undone.</small></p>
                                 </div>
                                 <div class="modal-footer">
-                                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel"
+                                        onclick="remove_transaction_id_delete_append()">
                                     <input type="submit" class="btn btn-danger" value="Delete">
                                 </div>
                             </form>
