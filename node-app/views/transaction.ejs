@@ -107,8 +107,10 @@
                         <%= (element.transaction_value).toLocaleString('en-US', {minimumFractionDigits: 2}) %>
                     </td>
                     <td>
-                        <a id="<%= element.transaction_id %>" href="#deleteTransaction" class="delete"
-                            data-toggle="modal">
+                        <a id="<%= element.transaction_id %>" href="#editTransaction" class="edit" data-toggle="modal">
+                            <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+                        </a>
+                        <a id="<%= element.transaction_id %>" href="#deleteTransaction" class="delete" data-toggle="modal">
                             <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
                         </a>
                     </td>
@@ -215,7 +217,7 @@
                             <form action="/transaction/edit" class="customRadio customCheckbox m-0 p-0" method="post">
                                 <input type="text" class="holdIDs" name="account_id"
                                     value="<%= accountInfo.account_id %>">
-                                <input type="text" name='transaction_id' value='' hidden />
+
                                 <div class="modal-header">
                                     <h4 class="modal-title">Edit Transaction</h4>
                                     <button type="button" class="close" data-dismiss="modal"
@@ -276,8 +278,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel"
-                                        onclick="uncheck()">
+                                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                                     <input type="submit" class="btn btn-success" name="edit" value="Save">
                                 </div>
                             </form>
@@ -304,8 +305,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                    <input type="submit" class="btn btn-danger" value="Delete"
-                                        onclick="reply_click(this)">
+                                    <input type="submit" class="btn btn-danger" value="Delete">
                                 </div>
                             </form>
                         </div>

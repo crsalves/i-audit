@@ -175,9 +175,6 @@ class MemberController {
     }
 
     async deleteMemberAccountTransaction(account_id, transaction_id) {
-        console.log("delete account_id: ", account_id)
-        console.log("delete transaction_id: ", transaction_id)
-
         if (transaction_id != null) {
             if (typeof (transaction_id) != "string") {
                 for (var i = 0; i < transaction_id.length; i++) {
@@ -186,9 +183,6 @@ class MemberController {
             } else {
                 await transactionController.deleteOneTransaction(account_id, transaction_id)
             }
-            console.log("controller1")
-
-
             var memberAccountTransactions = await this.getMemberAccountTransactions(account_id)
         }
         return new Promise(async function (resolve, reject) {

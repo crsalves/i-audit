@@ -3,9 +3,6 @@
 $(".delete").click(function () {
     var modal = $("#deleteTransaction").find(".modal-body");
     var transaction_id = $(this).attr("id");
-    console.log(transaction_id)
-
-
     $(modal).append("<input type='text' class='myClassTest' name='transaction_id' value='" + transaction_id + "' hidden/>")
 });
 

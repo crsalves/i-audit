@@ -66,7 +66,6 @@ module.exports = function () {
     router.post('/edit', async function (req, res) {
         if (req.isAuthenticated()) {
             try {
-                console.log(req.body.transaction_id)
                 var memberAccountTransactions = await memberController.updateMemberAccountTransaction(
                     req.body.transaction_id,
                     req.body.account_id,
@@ -75,7 +74,6 @@ module.exports = function () {
                     req.body.transaction_type,
                     req.body.transaction_value
                 )
-
                 res.render('transaction', {
                     showLogin: false,
                     isLoginAdmin: false,
