@@ -8,7 +8,12 @@ body {
     text-align: center;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: "Montserrat-Bold";
 }
 
@@ -17,15 +22,18 @@ h1, h2, h3, h4, h5, h6 {
     padding-bottom: 70px;
 }
 
-.navbar-default{
+.navbar-default {
     background-color: #03363d;
 }
-.navbar-default .navbar-brand{
+
+.navbar-default .navbar-brand {
     color: #fff;
 }
+
 .nav.navbar-nav.navbar-right li a {
     color: #fff;
 }
+
 .navbar {
     padding-top: 15px;
     border: 0;
@@ -39,7 +47,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #1abc9c !important;
 }
 
-.navbar-login{
+.navbar-login {
     color: #fff;
 }
 
@@ -47,18 +55,19 @@ ul {
     padding: 10px 50px 0 0;
 }
 
-.btn{
+.btn {
     color: #03363d;
 }
-.btnDelIcon{
-    border:none;
+
+.btnDelIcon {
+    border: none;
     background-color: transparent;
-    color:red
+    color: red
 }
 
 
 
-.form-group{
+.form-group {
     text-align: left;
     display: inline-block;
 }
@@ -68,9 +77,11 @@ ul {
 .social-icon {
     margin: 20px 10px;
 }
+
 .footer-padding {
     padding-bottom: 60px;
 }
+
 .footer {
     background-color: #03363d;
     color: #fff;
@@ -80,6 +91,7 @@ ul {
     width: 100%;
     height: 200px;
 }
+
 .footer p {
     margin-top: 25px;
     font-size: 12px;
@@ -91,8 +103,9 @@ ul {
     background: #fff;
     padding: 0 25px 0 25px;
     border-radius: 3px;
-    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
+
 .table-title {
     padding-bottom: 15px;
     background: #03363d;
@@ -102,13 +115,16 @@ ul {
     border-radius: 3px 3px 0 0;
     text-align: left;
 }
+
 .table-title h2 {
     margin: 5px 0 0;
     font-size: 24px;
 }
+
 .table-title .btn-group {
     float: right;
 }
+
 .table-title .btn {
     color: #fff;
     float: right;
@@ -120,42 +136,53 @@ ul {
     outline: none !important;
     margin-left: 10px;
 }
+
 .table-title .btn i {
     float: left;
     font-size: 21px;
     margin-right: 5px;
 }
+
 .table-title .btn span {
     float: left;
     margin-top: 2px;
 }
-table.table tr th, table.table tr td {
+
+table.table tr th,
+table.table tr td {
     border-color: #e9e9e9;
     padding: 12px 15px;
     vertical-align: middle;
 }
+
 table.table tr th:first-child {
     width: 60px;
 }
+
 table.table tr th:last-child {
     width: 100px;
 }
+
 table.table-striped tbody tr:nth-of-type(odd) {
     background-color: #fcfcfc;
 }
+
 table.table-striped.table-hover tbody tr:hover {
     background: #f5f5f5;
 }
+
 table.table th i {
     font-size: 13px;
     margin: 0 5px;
     cursor: pointer;
 }
+
 table.table td:last-child i {
     opacity: 0.9;
     font-size: 22px;
     margin: 0 5px;
 }
+
 table.table td a {
     font-weight: bold;
     color: #566787;
@@ -163,31 +190,38 @@ table.table td a {
     text-decoration: underline;
     outline: none !important;
 }
+
 table.table td a:hover {
     color: #2196F3;
 }
+
 table.table td a.edit {
     color: #FFC107;
 }
+
 table.table td a.delete {
     color: #F44336;
 }
+
 table.table td i {
     font-size: 19px;
 }
+
 table.table .avatar {
     border-radius: 50%;
     vertical-align: middle;
     margin-right: 10px;
 }
-thead{
+
+thead {
     font-weight: bold;
 }
+
 th {
     text-align: center;
 }
 
-.tableRowInput{
+.tableRowInput {
     border-style: hidden;
     background-color: transparent;
 }
@@ -197,23 +231,26 @@ th {
     border: none;
     background-color: transparent;
 }
-.holdIDs{
+
+.holdIDs {
     visibility: hidden;
 }
-#transaction-interval{
+
+#transaction-interval {
     background-color: #03363d;
     color: white;
     margin: 0 auto;
     padding: 5px;
     text-align: left;
 }
-.calendar{
+
+.calendar {
     color: black;
     background-color: white;
     font-size: 2rem;
 }
 
-.labels{
+.labels {
     font-size: 2rem;
 }
 
@@ -221,31 +258,46 @@ th {
 .modal .modal-dialog {
     max-width: 400px;
 }
-.modal .modal-header, .modal .modal-body, .modal .modal-footer {
+
+.modal .modal-header,
+.modal .modal-body,
+.modal .modal-footer {
     padding: 20px 30px;
 }
+
 .modal .modal-content {
     border-radius: 3px;
 }
+
 .modal .modal-footer {
     background: #ecf0f1;
     border-radius: 0 0 3px 3px;
 }
+
 .modal .modal-title {
     display: inline-block;
 }
+
 .modal .form-control {
     border-radius: 2px;
     box-shadow: none;
     border-color: #dddddd;
 }
+
 .modal textarea.form-control {
     resize: vertical;
 }
+
 .modal .btn {
     border-radius: 2px;
     min-width: 100px;
 }
+
 .modal form label {
     font-weight: normal;
+}
+
+input[type="radio"] {
+    margin-top: -1px;
+    vertical-align: middle;
 }

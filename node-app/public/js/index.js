@@ -67,12 +67,17 @@ function populate_modal_window(event) {
             }
 
             // transaction value
-            var transaction_value = row.find(".transaction_value").text()
+            var transaction_value = row.find(".transaction_value").text().trim()
 
             // This omits the negative sign from the string
             if (transaction_value.substring(0, 1) == "-") {
                 transaction_value = transaction_value.substring(1);
             }
+
+
+            // parse float .......
+
+
             $("#editTransaction").find(".modal-content input:text[name=transaction_value]").prop('value', transaction_value);
         }
     });
