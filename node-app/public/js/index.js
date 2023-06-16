@@ -31,29 +31,41 @@ function populate_modal_window(event) {
 
             // category
             var category_type = row.find(".category_type").text().trim()
+
+            console.log(category_type)
             switch (category_type) {
-                case "Salary":
+                case "Cash Back":
                     $("#editTransaction").find(".modal-body input:radio[name=category_type]").filter('[value=1]').prop('checked', true);
                     break;
-                case "Cash Back":
+                case "Education":
                     $("#editTransaction").find(".modal-body input:radio[name=category_type]").filter('[value=2]').prop('checked', true);
                     break;
-                case "House Rent":
-                    $("#editTransaction").find(".modal-body input:radio[name=category_type]").filter('[value=3]').prop('checked', true);
-                    break;
                 case "Electricity":
+                    $("#editTransaction").find(".modal-body input:radio[name=category_type]").filter('[value=3]').prop('checked', true);
+                case "Entertainment":
                     $("#editTransaction").find(".modal-body input:radio[name=category_type]").filter('[value=4]').prop('checked', true);
+                    break;
                 case "Food":
                     $("#editTransaction").find(".modal-body input:radio[name=category_type]").filter('[value=5]').prop('checked', true);
                     break;
-                case "Internet":
+                case "House Rent":
                     $("#editTransaction").find(".modal-body input:radio[name=category_type]").filter('[value=6]').prop('checked', true);
                     break;
-                case "Personal Care":
+                case "Internet":
                     $("#editTransaction").find(".modal-body input:radio[name=category_type]").filter('[value=7]').prop('checked', true);
                     break;
-                case "Entertainment":
+                case "Personal Care":
                     $("#editTransaction").find(".modal-body input:radio[name=category_type]").filter('[value=8]').prop('checked', true);
+                    break;
+                case "Phone":
+                    $("#editTransaction").find(".modal-body input:radio[name=category_type]").filter('[value=9]').prop('checked', true);
+                    break;
+                case "Salary":
+                    $("#editTransaction").find(".modal-body input:radio[name=category_type]").filter('[value=10]').prop('checked', true);
+                    console.log("bingo Salary")
+                    break;
+                case "Transportation":
+                    $("#editTransaction").find(".modal-body input:radio[name=category_type]").filter('[value=11]').prop('checked', true);
                     break;
             }
 
@@ -74,11 +86,8 @@ function populate_modal_window(event) {
                 transaction_value = transaction_value.substring(1);
             }
 
-
-            // parse float .......
-
-
-            $("#editTransaction").find(".modal-content input:text[name=transaction_value]").prop('value', transaction_value);
+            var formatted_transaction_value = parseFloat(transaction_value.replaceAll(",", ""))
+            $("#editTransaction").find(".modal-content input:text[name=transaction_value]").prop('value', formatted_transaction_value);
         }
     });
 
